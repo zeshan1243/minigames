@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3366385543056829" crossorigin="anonymous"></script>
 </head>
 <body>
     <header class="header">
@@ -32,40 +33,66 @@
             </div>
         </div>
 
-        <div class="canvas-wrapper" id="canvasWrapper">
-            <canvas id="gameCanvas"></canvas>
+        <div class="game-layout">
+            <aside class="ad-rail ad-rail-left">
+                <div class="ad-slot ad-slot-vertical">
+                    <span class="ad-label">Advertisement</span>
+                    <ins class="adsbygoogle"
+                         style="display:inline-block;width:160px;height:600px"
+                         data-ad-client="ca-pub-3366385543056829"
+                         data-ad-slot="7250058413"></ins>
+                    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                </div>
+            </aside>
 
-            <div class="game-overlay" id="levelSelect" style="display:none;">
-                <div class="overlay-card level-select-card">
-                    <h3>Select Difficulty</h3>
-                    <div class="level-buttons" id="levelButtons">
-                        <!-- Rendered by gameLoader.js -->
+            <div class="game-center">
+                <div class="canvas-wrapper" id="canvasWrapper">
+                    <canvas id="gameCanvas"></canvas>
+
+                    <div class="game-overlay" id="levelSelect" style="display:none;">
+                        <div class="overlay-card level-select-card">
+                            <h3>Select Difficulty</h3>
+                            <div class="level-buttons" id="levelButtons">
+                                <!-- Rendered by gameLoader.js -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="game-overlay" id="gameOverlay" style="display:none;">
+                        <div class="overlay-card">
+                            <h3 id="overlayTitle">Game Over</h3>
+                            <p class="overlay-score">Score: <span id="overlayScore">0</span></p>
+                            <p class="overlay-best">Best: <span id="overlayBest">0</span></p>
+                            <div class="overlay-actions">
+                                <button class="btn btn-primary" id="playAgainBtn">Play Again</button>
+                                <button class="btn btn-secondary" id="shareBtn">Share Score</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="game-overlay" id="pauseOverlay" style="display:none;">
+                        <div class="overlay-card">
+                            <h3>Paused</h3>
+                            <p class="overlay-hint">Press P to resume</p>
+                            <button class="btn btn-primary" id="resumeBtn">Resume</button>
+                        </div>
                     </div>
                 </div>
+
+                <p class="controls-hint" id="controlsHint"></p>
             </div>
 
-            <div class="game-overlay" id="gameOverlay" style="display:none;">
-                <div class="overlay-card">
-                    <h3 id="overlayTitle">Game Over</h3>
-                    <p class="overlay-score">Score: <span id="overlayScore">0</span></p>
-                    <p class="overlay-best">Best: <span id="overlayBest">0</span></p>
-                    <div class="overlay-actions">
-                        <button class="btn btn-primary" id="playAgainBtn">Play Again</button>
-                        <button class="btn btn-secondary" id="shareBtn">Share Score</button>
-                    </div>
+            <aside class="ad-rail ad-rail-right">
+                <div class="ad-slot ad-slot-vertical">
+                    <span class="ad-label">Advertisement</span>
+                    <ins class="adsbygoogle"
+                         style="display:inline-block;width:160px;height:600px"
+                         data-ad-client="ca-pub-3366385543056829"
+                         data-ad-slot="7250058413"></ins>
+                    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 </div>
-            </div>
-
-            <div class="game-overlay" id="pauseOverlay" style="display:none;">
-                <div class="overlay-card">
-                    <h3>Paused</h3>
-                    <p class="overlay-hint">Press P to resume</p>
-                    <button class="btn btn-primary" id="resumeBtn">Resume</button>
-                </div>
-            </div>
+            </aside>
         </div>
-
-        <p class="controls-hint" id="controlsHint"></p>
 
         <div class="game-error" id="gameError" style="display:none;">
             <h2>Game Not Found</h2>

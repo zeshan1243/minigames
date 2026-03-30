@@ -24,54 +24,49 @@
     });
 
     function detectAdBlocker() {
-        // Method 1: Create a bait ad element
+        // Method 1: Create a bait ad element that ad blockers will hide
         const bait = document.createElement('div');
-        bait.className = 'ad-banner ad_banner adsbygoogle adsbox ad-placeholder';
+        bait.className = 'ad-banner ad_banner adsbox ad-placeholder';
         bait.setAttribute('id', 'ad-test-bait');
-        bait.style.cssText = 'width:1px;height:1px;position:absolute;left:-9999px;top:-9999px;';
+        // Position on-screen but invisible to user, with real dimensions so we can detect changes
+        bait.style.cssText = 'width:300px;height:250px;position:fixed;left:-400px;top:0;background:transparent;pointer-events:none;z-index:-1;';
         bait.innerHTML = '&nbsp;';
         document.body.appendChild(bait);
 
         setTimeout(function () {
-            let blocked = false;
+            let baitBlocked = false;
 
-            // Check if bait element was hidden/removed by ad blocker
-            if (!bait || bait.offsetParent === null || bait.offsetHeight === 0 ||
-                bait.offsetWidth === 0 || bait.clientHeight === 0) {
-                blocked = true;
-            }
-
-            const style = window.getComputedStyle ? window.getComputedStyle(bait) : null;
-            if (style && (style.display === 'none' || style.visibility === 'hidden' || style.opacity === '0')) {
-                blocked = true;
-            }
-
-            // Method 2: Try to fetch a known ad script pattern
-            if (!blocked) {
-                try {
-                    const testScript = document.createElement('script');
-                    testScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3366385543056829';
-                    testScript.onerror = function () {
-                        showAdBlockOverlay();
-                    };
-                    // If it loads fine, ad blocker is not active
-                    testScript.onload = function () {
-                        // Clean up
-                        if (bait.parentNode) bait.parentNode.removeChild(bait);
-                    };
-                    document.head.appendChild(testScript);
-                } catch (e) {
-                    blocked = true;
+            // Check if bait element was removed from DOM
+            if (!document.getElementById('ad-test-bait')) {
+                baitBlocked = true;
+            } else {
+                // Check if ad blocker set display:none, visibility:hidden, or height to 0
+                const style = window.getComputedStyle(bait);
+                if (style.display === 'none' || style.visibility === 'hidden' ||
+                    style.opacity === '0' || parseInt(style.height) === 0) {
+                    baitBlocked = true;
                 }
-            }
-
-            if (blocked) {
-                showAdBlockOverlay();
             }
 
             // Clean up bait
             if (bait.parentNode) bait.parentNode.removeChild(bait);
-        }, 200);
+
+            if (baitBlocked) {
+                showAdBlockOverlay();
+                return;
+            }
+
+            // Method 2: Try to fetch a known ad script URL
+            fetch('https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3366385543056829', {
+                method: 'HEAD',
+                mode: 'no-cors'
+            }).then(function () {
+                // Request went through — no ad blocker
+            }).catch(function () {
+                // Blocked by ad blocker
+                showAdBlockOverlay();
+            });
+        }, 300);
     }
 
     function showAdBlockOverlay() {
