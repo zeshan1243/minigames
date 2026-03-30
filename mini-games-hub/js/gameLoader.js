@@ -267,8 +267,31 @@ async function init() {
             try {
                 (window.adsbygoogle = window.adsbygoogle || []).push({});
             } catch (e) {
-                // Ad failed to load, continue anyway
+                // Ad failed to load
             }
+
+            // Fallback: if ad doesn't fill after 1.5s, show a self-promo ad
+            setTimeout(() => {
+                const status = ins.getAttribute('data-ad-status');
+                if (!status || status === 'unfilled' || ins.innerHTML.trim() === '') {
+                    adContainer.innerHTML = `
+                        <div style="width:100%;max-width:400px;padding:32px;text-align:center;">
+                            <div style="font-size:2.5rem;margin-bottom:16px;">🎮</div>
+                            <h3 style="color:#e8e8f0;font-size:1.3rem;margin-bottom:8px;font-family:Outfit,sans-serif;">Zehum Mini Games</h3>
+                            <p style="color:#8888a0;font-size:0.9rem;line-height:1.6;margin-bottom:20px;font-family:Outfit,sans-serif;">
+                                50+ free games at your fingertips!<br>
+                                Challenge friends, beat high scores, and have fun.
+                            </p>
+                            <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+                                <a href="/game?id=tetris" style="background:#00d4ff;color:#000;padding:8px 16px;border-radius:8px;text-decoration:none;font-family:Outfit,sans-serif;font-weight:600;font-size:0.85rem;">Play Tetris</a>
+                                <a href="/game?id=snake" style="background:#00e676;color:#000;padding:8px 16px;border-radius:8px;text-decoration:none;font-family:Outfit,sans-serif;font-weight:600;font-size:0.85rem;">Play Snake</a>
+                                <a href="/game?id=flappy" style="background:#ffd60a;color:#000;padding:8px 16px;border-radius:8px;text-decoration:none;font-family:Outfit,sans-serif;font-weight:600;font-size:0.85rem;">Play Flappy</a>
+                            </div>
+                            <p style="color:#555;font-size:0.7rem;margin-top:16px;font-family:Outfit,sans-serif;">zehum.com — No downloads. Just play.</p>
+                        </div>
+                    `;
+                }
+            }, 1500);
 
             let seconds = 5;
             timerEl.textContent = seconds;

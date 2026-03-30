@@ -8,7 +8,7 @@ const SlidingPuzzle = {
 
     init(canvas, ctx, ui) {
         this.canvas = canvas; this.ctx = ctx; this.ui = ui;
-        this.cellSize = (ui.canvasW - 60) / this.size;
+        this.cellSize = (Math.min(ui.canvasW, ui.canvasH) - 160) / this.size;
         this.handleClick = this.handleClick.bind(this);
         this.handleTouch = this.handleTouch.bind(this);
         this.handleKey = this.handleKey.bind(this);
@@ -23,7 +23,7 @@ const SlidingPuzzle = {
         if (level === 'easy') { this.size = 3; }
         else if (level === 'hard' || level === 'expert') { this.size = 5; }
         else { this.size = 4; }
-        this.cellSize = (this.ui.canvasW - 60) / this.size;
+        this.cellSize = (Math.min(this.ui.canvasW, this.ui.canvasH) - 160) / this.size;
 
         this.moves = 0; this.gameOver = false;
         this.animating = false; this.animTile = null;
@@ -107,14 +107,19 @@ const SlidingPuzzle = {
         this.processXY(e.touches[0].clientX - r.left, e.touches[0].clientY - r.top);
     },
     processXY(x, y) {
-        const ox = 30, oy = 120;
-        const col = Math.floor((x - ox) / this.cellSize);
-        const row = Math.floor((y - oy) / this.cellSize);
+        const cs = this.cellSize, s = this.size;
+        const w = this.ui.canvasW, h = this.ui.canvasH;
+        const gridTotal = cs * s;
+        const ox = (w - gridTotal) / 2;
+        const oy = 90 + (h - 90 - gridTotal) / 2;
+        const col = Math.floor((x - ox) / cs);
+        const row = Math.floor((y - oy) / cs);
         if (col >= 0 && col < this.size && row >= 0 && row < this.size) {
             this.tryMove(row * this.size + col);
         }
     },
     handleKey(e) {
+        if (['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.key)) e.preventDefault();
         const empty = this.grid.indexOf(0);
         const er = Math.floor(empty / this.size), ec = empty % this.size;
         if (e.key === 'ArrowUp' && er < this.size - 1) this.tryMove((er+1)*this.size + ec);
@@ -133,7 +138,9 @@ const SlidingPuzzle = {
         ctx.fillStyle = '#8888a0'; ctx.font = '14px Outfit, sans-serif';
         ctx.fillText(`Moves: ${this.moves}`, w/2, 70);
 
-        const ox = 30, oy = 120;
+        const gridTotal = cs * s;
+        const ox = (w - gridTotal) / 2;
+        const oy = 90 + (h - 90 - gridTotal) / 2;
         const t = this.easeOut(this.animProgress);
 
         // Determine which grid index is being animated (the destination)
