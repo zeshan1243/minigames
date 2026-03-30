@@ -490,6 +490,77 @@ body::before {
     opacity: 0.4;
 }
 
+/* ===== Pre-Game Interstitial Ad ===== */
+.interstitial-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10001;
+    background: rgba(5, 5, 10, 0.95);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: overlayFadeIn 0.3s ease;
+}
+
+.interstitial-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-subtle);
+    border-radius: 20px;
+    padding: 32px;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    animation: overlaySlideUp 0.3s ease;
+}
+
+.interstitial-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 24px;
+}
+
+.interstitial-label {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.interstitial-timer {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--accent-cyan);
+    background: rgba(0, 212, 255, 0.1);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.interstitial-ad {
+    min-height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.interstitial-skip {
+    min-width: 160px;
+}
+
+.interstitial-skip:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
 /* ===== Sticky Bottom Ad (mobile/tablet) ===== */
 .ad-bottom-bar {
     display: none;

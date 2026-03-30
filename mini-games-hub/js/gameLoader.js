@@ -205,9 +205,61 @@ async function init() {
         };
     }
 
-    function startGame(level) {
+    function showInterstitial() {
+        return new Promise(resolve => {
+            const overlay = document.getElementById('interstitialOverlay');
+            const timerEl = document.getElementById('interstitialTimer');
+            const skipBtn = document.getElementById('interstitialSkip');
+            const adContainer = document.getElementById('interstitialAdContainer');
+
+            // Clear previous ad and inject a fresh one
+            adContainer.innerHTML = '';
+            const ins = document.createElement('ins');
+            ins.className = 'adsbygoogle';
+            ins.style.display = 'block';
+            ins.setAttribute('data-ad-client', 'ca-pub-3366385543056829');
+            ins.setAttribute('data-ad-slot', '1810232737');
+            ins.setAttribute('data-ad-format', 'auto');
+            ins.setAttribute('data-full-width-responsive', 'true');
+            adContainer.appendChild(ins);
+
+            // Show overlay first so the container has width
+            overlay.style.display = 'flex';
+
+            // Now push the ad (container is visible, has width)
+            try {
+                (window.adsbygoogle = window.adsbygoogle || []).push({});
+            } catch (e) {
+                // Ad failed to load, continue anyway
+            }
+
+            let seconds = 5;
+            timerEl.textContent = seconds;
+            skipBtn.disabled = true;
+            skipBtn.textContent = 'Wait...';
+
+            const interval = setInterval(() => {
+                seconds--;
+                timerEl.textContent = seconds;
+                if (seconds <= 0) {
+                    clearInterval(interval);
+                    skipBtn.disabled = false;
+                    skipBtn.textContent = 'Play Now';
+                }
+            }, 1000);
+
+            skipBtn.addEventListener('click', function handler() {
+                skipBtn.removeEventListener('click', handler);
+                overlay.style.display = 'none';
+                resolve();
+            });
+        });
+    }
+
+    async function startGame(level) {
         selectedLevel = level;
         document.getElementById('levelSelect').style.display = 'none';
+        await showInterstitial();
         game.init(canvas, ctx, buildUI(level));
         game.start();
     }
@@ -235,8 +287,9 @@ async function init() {
         startGame(selectedLevel || 'medium');
     }
 
-    document.getElementById('playAgainBtn').addEventListener('click', () => {
+    document.getElementById('playAgainBtn').addEventListener('click', async () => {
         document.getElementById('gameOverlay').style.display = 'none';
+        await showInterstitial();
         game.reset();
         game.start();
     });
