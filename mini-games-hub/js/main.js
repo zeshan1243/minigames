@@ -7,6 +7,7 @@ const CATEGORIES = [
     { key: 'reflex', label: 'Reflex & Speed' },
     { key: 'skill', label: 'Skill & Timing' },
     { key: 'strategy', label: 'Strategy' },
+    { key: 'cards', label: 'Card Games' },
     { key: 'casual', label: 'Casual' },
     { key: 'multiplayer', label: '2 Player' }
 ];
@@ -64,6 +65,13 @@ const GAMES = [
     { id: 'connectfour', title: 'Connect Four', description: 'Drop discs to connect four — AI or 2P!', icon: '\uD83D\uDD34', gradient: 'linear-gradient(135deg, #ff2d7b, #ffd60a)', scoreUnit: '', category: 'strategy', multiplayer: true, thumb: 'connectfour.png' },
     { id: 'tanks', title: 'Tanks', description: 'Blast enemy tanks — solo or 2P battle!', icon: '\uD83D\uDE82', gradient: 'linear-gradient(135deg, #00e676, #888)', scoreUnit: '', category: 'strategy', multiplayer: true, thumb: 'tanks.png' },
     { id: 'rps', title: 'Rock Paper Scissors', description: 'Best of 5 against the AI.', icon: '\u270A', gradient: 'linear-gradient(135deg, #888, #00d4ff)', scoreUnit: '', category: 'strategy', thumb: 'rps.png' },
+
+    // Card Games
+    { id: 'hearts', title: 'Hearts', description: 'Avoid hearts and the Queen of Spades!', icon: '\u2665\uFE0F', gradient: 'linear-gradient(135deg, #ff2d7b, #b44dff)', scoreUnit: '', category: 'cards', thumb: 'hearts.png' },
+    { id: 'blackjack', title: 'Blackjack', description: 'Beat the dealer to 21 without going bust!', icon: '\uD83C\uDCCF', gradient: 'linear-gradient(135deg, #1a5c3a, #00e676)', scoreUnit: '', category: 'cards', thumb: 'blackjack.png' },
+    { id: 'war', title: 'War', description: 'Flip cards and battle the AI — highest card wins!', icon: '\u2694\uFE0F', gradient: 'linear-gradient(135deg, #ff2d7b, #ffd60a)', scoreUnit: '', category: 'cards', thumb: 'war.png' },
+    { id: 'crazyeights', title: 'Crazy Eights', description: 'Match suits or ranks, play 8s wild!', icon: '\uD83C\uDCCF', gradient: 'linear-gradient(135deg, #ffd60a, #ff2d7b)', scoreUnit: '', category: 'cards', thumb: 'crazyeights.png' },
+    { id: 'solitaire', title: 'Solitaire', description: 'Classic Klondike — stack cards, clear the board.', icon: '\uD83C\uDCC1', gradient: 'linear-gradient(135deg, #00e676, #1a5c3a)', scoreUnit: '', category: 'cards', thumb: 'solitaire.png' },
 
     // Casual
     { id: 'simon', title: 'Simon Says', description: 'Remember and repeat the color sequence.', icon: '\uD83D\uDFE2', gradient: 'linear-gradient(135deg, #00e676, #ffd60a)', scoreUnit: '', category: 'casual', thumb: 'simon.png' },

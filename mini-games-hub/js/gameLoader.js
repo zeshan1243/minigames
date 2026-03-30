@@ -50,7 +50,12 @@ const GAME_META = {
     dodger:        { title: 'Dodger',                hint: 'Mouse/touch/arrows to dodge falling objects', module: './games/dodger.js' },
     pinball:       { title: 'Pinball',               hint: 'Left/Right arrows for flippers \u2022 SPACE to launch', module: './games/pinball.js' },
     tanks:         { title: 'Tanks',                 hint: 'WASD to move \u2022 Mouse to aim \u2022 Click/SPACE to fire', module: './games/tanks.js' },
-    matching:      { title: 'Pattern Match',         hint: 'Memorize the pattern \u2022 Click cells to recreate it', module: './games/matching.js' }
+    matching:      { title: 'Pattern Match',         hint: 'Memorize the pattern \u2022 Click cells to recreate it', module: './games/matching.js' },
+    hearts:        { title: 'Hearts',                hint: 'Click cards to play \u2022 Arrow keys to navigate \u2022 Avoid hearts & Queen of Spades', module: './games/hearts.js' },
+    blackjack:     { title: 'Blackjack',              hint: 'H=Hit \u2022 S=Stand \u2022 D=Double \u2022 1/2/3 to bet', module: './games/blackjack.js' },
+    crazyeights:   { title: 'Crazy Eights',           hint: 'Click cards to play \u2022 Click stock to draw \u2022 Arrows + Enter \u2022 P to pause', module: './games/crazyeights.js' },
+    war:           { title: 'War',                    hint: 'Click, tap, or SPACE to battle \u2022 P to pause', module: './games/war.js' },
+    solitaire:     { title: 'Solitaire',              hint: 'Drag cards to move \u2022 Double-click to auto-move \u2022 Click stock to draw', module: './games/solitaire.js' }
 };
 
 const CANVAS_W = 800;
@@ -421,7 +426,12 @@ const SUGGESTED_DATA = [
     { id: 'bubblepop', title: 'Bubble Pop', icon: '\uD83E\uDEE7', gradient: 'linear-gradient(135deg, #00d4ff, #b44dff)' },
     { id: 'rps', title: 'Rock Paper Scissors', icon: '\u270A', gradient: 'linear-gradient(135deg, #888, #00d4ff)' },
     { id: 'ballbounce', title: 'Ball Bounce', icon: '\u26BD', gradient: 'linear-gradient(135deg, #00d4ff, #7c4dff)' },
-    { id: 'patternmemory', title: 'Pattern Memory', icon: '\uD83E\uDDE0', gradient: 'linear-gradient(135deg, #00d4ff, #b44dff)' }
+    { id: 'patternmemory', title: 'Pattern Memory', icon: '\uD83E\uDDE0', gradient: 'linear-gradient(135deg, #00d4ff, #b44dff)' },
+    { id: 'hearts', title: 'Hearts', icon: '\u2665\uFE0F', gradient: 'linear-gradient(135deg, #ff2d7b, #b44dff)' },
+    { id: 'blackjack', title: 'Blackjack', icon: '\uD83C\uDCCF', gradient: 'linear-gradient(135deg, #1a5c3a, #00e676)' },
+    { id: 'solitaire', title: 'Solitaire', icon: '\uD83C\uDCC1', gradient: 'linear-gradient(135deg, #00e676, #1a5c3a)' },
+    { id: 'crazyeights', title: 'Crazy Eights', icon: '\uD83C\uDCB8', gradient: 'linear-gradient(135deg, #ffd60a, #ff6d00)' },
+    { id: 'war', title: 'War', icon: '\u2694\uFE0F', gradient: 'linear-gradient(135deg, #ff2d7b, #ffd60a)' }
 ];
 
 function renderSuggested(currentId) {
