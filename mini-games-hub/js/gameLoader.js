@@ -14,6 +14,9 @@ const GAME_META = {
     helicopter:    { title: 'Helicopter',           hint: 'Hold SPACE/click/tap to fly up \u2022 Release to descend', module: './games/arcade/helicopter.js' },
     pinball:       { title: 'Pinball',               hint: 'Left/Right arrows for flippers \u2022 SPACE to launch', module: './games/arcade/pinball.js' },
     platformer:    { title: 'Platformer',            hint: 'Arrows/WASD to move \u2022 SPACE to jump \u2022 Collect coins!', module: './games/arcade/platformer.js' },
+    onebutton:     { title: 'One-Button Survival',  hint: 'SPACE or tap to fly \u2022 Dodge obstacles \u2022 P to pause', module: './games/arcade/onebutton.js' },
+    gravityflip:   { title: 'Gravity Flip',          hint: 'SPACE or tap to flip gravity \u2022 P to pause', module: './games/arcade/gravityflip.js' },
+    crowdescape:   { title: 'Crowd Escape',          hint: 'Arrows/WASD to move \u2022 Drag on mobile \u2022 P to pause', module: './games/arcade/crowdescape.js' },
 
     // Puzzle & Logic
     puzzle:        { title: 'Daily Puzzle',        hint: 'Guess the daily number in 6 tries', module: './games/puzzle/puzzle.js' },
@@ -26,6 +29,7 @@ const GAME_META = {
     sudoku:        { title: 'Sudoku',               hint: 'Click a cell, then press 1-4 or use number pad', module: './games/puzzle/sudoku.js' },
     wordsearch:    { title: 'Word Search',          hint: 'Click and drag to select words', module: './games/puzzle/wordsearch.js' },
     maze:          { title: 'Maze Runner',          hint: 'Arrow keys or swipe to navigate the maze', module: './games/puzzle/maze.js' },
+    shapemerge:    { title: 'Shape Merge',          hint: 'Arrow keys or swipe to slide shapes \u2022 Same shapes merge!', module: './games/puzzle/shapemerge.js' },
 
     // Reflex & Speed
     reaction:      { title: 'Reaction Test',      hint: 'Click or tap when the screen turns green', module: './games/reflex/reaction.js' },
@@ -36,6 +40,9 @@ const GAME_META = {
     quickmath:     { title: 'Quick Math',          hint: 'Type the answer and press Enter', module: './games/reflex/quickmath.js' },
     tapcounter:    { title: 'Tap Counter',         hint: 'Tap or press SPACE as fast as you can!', module: './games/reflex/tapcounter.js' },
     rhythmtap:     { title: 'Rhythm Tap',           hint: 'D/F/J/K keys or tap lanes when notes reach the line', module: './games/reflex/rhythmtap.js' },
+    reactionduel:  { title: 'Reaction Duel',        hint: 'A = Attack \u2022 D = Defend \u2022 React faster than the AI!', module: './games/reflex/reactionduel.js' },
+    hiddenobject:  { title: 'Hidden Object',         hint: 'Click/tap the matching objects before time runs out', module: './games/reflex/hiddenobject.js' },
+    dontthink:     { title: "Don't Think",           hint: 'Match the WORD or COLOR \u2022 Keys 1-4 or R/B/G/Y', module: './games/reflex/dontthink.js' },
 
     // Skill & Timing
     stack:         { title: 'Stack Game',          hint: 'Click, tap, or SPACE to drop the block \u2022 P to pause', module: './games/skill/stack.js' },
@@ -47,6 +54,8 @@ const GAME_META = {
     golfputt:      { title: 'Golf Putt',            hint: 'Aim with mouse \u2022 Hold click to set power \u2022 Release to putt', module: './games/skill/golfputt.js' },
     fruitslicer:   { title: 'Fruit Slicer',         hint: 'Click/drag across fruits to slice them', module: './games/skill/fruitslicer.js' },
     dodger:        { title: 'Dodger',                hint: 'Mouse/touch/arrows to dodge falling objects', module: './games/skill/dodger.js' },
+    timefreeze:    { title: 'Time Freeze',           hint: 'WASD/Arrows to move \u2022 Shift/F to freeze time \u2022 P to pause', module: './games/skill/timefreeze.js' },
+    rhythmsurvival:{ title: 'Rhythm Survival',       hint: 'Left/Right arrows or A/D to dodge \u2022 P to pause', module: './games/skill/rhythmsurvival.js' },
 
     // Strategy
     tictactoe:     { title: 'Tic-Tac-Toe',        hint: 'Click or tap a cell to place your X', module: './games/strategy/tictactoe.js' },
@@ -68,7 +77,8 @@ const GAME_META = {
     colorfill:     { title: 'Color Fill',           hint: 'Click colors or press 1-6 to flood fill', module: './games/casual/colorfill.js' },
     numbersort:    { title: 'Number Sort',          hint: 'Click adjacent numbers to swap them', module: './games/casual/numbersort.js' },
     bubblepop:     { title: 'Bubble Pop',           hint: 'Click or tap bubbles to pop them', module: './games/casual/bubblepop.js' },
-    matching:      { title: 'Pattern Match',         hint: 'Memorize the pattern \u2022 Click cells to recreate it', module: './games/casual/matching.js' }
+    matching:      { title: 'Pattern Match',         hint: 'Memorize the pattern \u2022 Click cells to recreate it', module: './games/casual/matching.js' },
+    idleclicker:   { title: 'Fake Rich',             hint: 'Click the coin \u2022 SPACE to click \u2022 Buy upgrades \u2022 Prestige at $100K', module: './games/casual/idleclicker.js' }
 };
 
 const CANVAS_W = 800;
@@ -271,11 +281,11 @@ async function init() {
             adContainer.innerHTML = '';
             const ins = document.createElement('ins');
             ins.className = 'adsbygoogle';
-            ins.style.display = 'block';
+            ins.style.display = 'inline-block';
+            ins.style.width = '300px';
+            ins.style.height = '250px';
             ins.setAttribute('data-ad-client', 'ca-pub-3366385543056829');
             ins.setAttribute('data-ad-slot', '1810232737');
-            ins.setAttribute('data-ad-format', 'auto');
-            ins.setAttribute('data-full-width-responsive', 'true');
             adContainer.appendChild(ins);
 
             // Show overlay first so the container has width

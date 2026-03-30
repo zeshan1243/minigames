@@ -542,11 +542,12 @@ body::before {
 }
 
 .interstitial-ad {
-    min-height: 250px;
+    width: 300px;
+    height: 250px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 24px;
+    margin: 0 auto 24px;
     background: rgba(255, 255, 255, 0.02);
     border-radius: 12px;
     overflow: hidden;

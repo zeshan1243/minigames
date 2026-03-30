@@ -26,6 +26,9 @@ const GAMES = [
     { id: 'helicopter', title: 'Helicopter', description: 'Hold to fly through the cave. Don\'t crash!', icon: '\uD83D\uDE81', gradient: 'linear-gradient(135deg, #00d4ff, #00e676)', scoreUnit: '', category: 'arcade', thumb: 'helicopter.png' },
     { id: 'pinball', title: 'Pinball', description: 'Flip the ball and rack up points!', icon: '\uD83E\uDE99', gradient: 'linear-gradient(135deg, #ffd60a, #ff2d7b)', scoreUnit: '', category: 'arcade', thumb: 'pinball.png' },
     { id: 'platformer', title: 'Platformer', description: 'Jump, collect coins, reach the flag!', icon: '\uD83C\uDFAE', gradient: 'linear-gradient(135deg, #00d4ff, #ffd60a)', scoreUnit: '', category: 'arcade', thumb: 'platformer.png' },
+    { id: 'onebutton', title: 'One-Button Survival', description: 'One button. Infinite obstacles. How far can you go?', icon: '\uD83D\uDD25', gradient: 'linear-gradient(135deg, #00d4ff, #ff2d7b)', scoreUnit: '', category: 'arcade' },
+    { id: 'gravityflip', title: 'Gravity Flip', description: 'Flip gravity to dodge obstacles on floor and ceiling!', icon: '\uD83D\uDE80', gradient: 'linear-gradient(135deg, #b44dff, #00d4ff)', scoreUnit: '', category: 'arcade' },
+    { id: 'crowdescape', title: 'Crowd Escape', description: 'Escape the growing crowd of chasers!', icon: '\uD83C\uDFC3', gradient: 'linear-gradient(135deg, #ff2d7b, #ff6d00)', scoreUnit: 's', category: 'arcade' },
 
     // Puzzle & Logic
     { id: 'puzzle', title: 'Daily Puzzle', description: 'A new number puzzle every day. Can you crack it?', icon: '\uD83E\uDDE9', gradient: 'linear-gradient(135deg, #7c4dff, #00b0ff)', scoreUnit: '', category: 'puzzle', thumb: 'puzzle.png' },
@@ -38,6 +41,7 @@ const GAMES = [
     { id: 'sudoku', title: 'Sudoku', description: 'Fill the 4x4 grid with logic.', icon: '\uD83E\uDDEE', gradient: 'linear-gradient(135deg, #7c4dff, #00e676)', scoreUnit: '', category: 'puzzle', thumb: 'sudoku.png' },
     { id: 'wordsearch', title: 'Word Search', description: 'Find all hidden words in the grid.', icon: '\uD83D\uDD0D', gradient: 'linear-gradient(135deg, #00e676, #00d4ff)', scoreUnit: '', category: 'puzzle', thumb: 'wordsearch.png' },
     { id: 'maze', title: 'Maze Runner', description: 'Navigate through the procedural maze.', icon: '\uD83C\uDF10', gradient: 'linear-gradient(135deg, #00d4ff, #b44dff)', scoreUnit: '', category: 'puzzle', thumb: 'maze.png' },
+    { id: 'shapemerge', title: 'Shape Merge', description: 'Merge shapes in this 2048-style puzzle!', icon: '\uD83D\uDD37', gradient: 'linear-gradient(135deg, #00d4ff, #ffd60a)', scoreUnit: '', category: 'puzzle' },
 
     // Reflex & Speed
     { id: 'reaction', title: 'Reaction Test', description: 'Test your reflexes — 1P or 2P showdown!', icon: '\u26A1', gradient: 'linear-gradient(135deg, #00e676, #00b0ff)', scoreUnit: 'ms', category: 'reflex', multiplayer: true, thumb: 'reaction.png' },
@@ -48,6 +52,9 @@ const GAMES = [
     { id: 'quickmath', title: 'Quick Math', description: 'Solve math problems — 1P or 2P race!', icon: '\uD83E\uDDEE', gradient: 'linear-gradient(135deg, #00e676, #ffd60a)', scoreUnit: '', category: 'reflex', multiplayer: true, thumb: 'quickmath.png' },
     { id: 'tapcounter', title: 'Tap Counter', description: 'How many taps in 10 seconds? 1P or 2P!', icon: '\uD83D\uDC46', gradient: 'linear-gradient(135deg, #00d4ff, #00e676)', scoreUnit: '', category: 'reflex', multiplayer: true, thumb: 'tapcounter.png' },
     { id: 'rhythmtap', title: 'Rhythm Tap', description: 'Hit the notes to the beat.', icon: '\uD83C\uDFB5', gradient: 'linear-gradient(135deg, #b44dff, #ff2d7b)', scoreUnit: '', category: 'reflex', thumb: 'rhythmtap.png' },
+    { id: 'reactionduel', title: 'Reaction Duel', description: 'Attack or defend — react faster than the AI!', icon: '\u2694\uFE0F', gradient: 'linear-gradient(135deg, #ff2d7b, #00d4ff)', scoreUnit: '', category: 'reflex' },
+    { id: 'hiddenobject', title: 'Hidden Object', description: 'Find the hidden objects before time runs out!', icon: '\uD83D\uDD0D', gradient: 'linear-gradient(135deg, #ffd60a, #ff6d00)', scoreUnit: '', category: 'reflex' },
+    { id: 'dontthink', title: "Don't Think", description: 'Match the word or color — your brain will fight you!', icon: '\uD83E\uDDE0', gradient: 'linear-gradient(135deg, #ff2d7b, #ffd60a)', scoreUnit: '', category: 'reflex' },
 
     // Skill & Timing
     { id: 'stack', title: 'Stack Game', description: 'Stack blocks with precision. How high can you go?', icon: '\uD83E\uDDF1', gradient: 'linear-gradient(135deg, #ffd60a, #ff6d00)', scoreUnit: '', category: 'skill', thumb: 'stack.png' },
@@ -59,6 +66,8 @@ const GAMES = [
     { id: 'golfputt', title: 'Golf Putt', description: 'Aim and putt into the hole!', icon: '\u26F3', gradient: 'linear-gradient(135deg, #00e676, #264653)', scoreUnit: '', category: 'skill', thumb: 'golfputt.png' },
     { id: 'fruitslicer', title: 'Fruit Slicer', description: 'Slice the fruits, avoid the bombs!', icon: '\uD83C\uDF49', gradient: 'linear-gradient(135deg, #ff2d7b, #00e676)', scoreUnit: '', category: 'skill', thumb: 'fruitslicer.png' },
     { id: 'dodger', title: 'Dodger', description: 'Dodge falling objects as long as you can.', icon: '\uD83D\uDCA8', gradient: 'linear-gradient(135deg, #ff2d7b, #888)', scoreUnit: '', category: 'skill', thumb: 'dodger.png' },
+    { id: 'timefreeze', title: 'Time Freeze', description: 'Dodge bullets and freeze time to survive!', icon: '\u2744\uFE0F', gradient: 'linear-gradient(135deg, #00d4ff, #aa44ff)', scoreUnit: 's', category: 'skill' },
+    { id: 'rhythmsurvival', title: 'Rhythm Survival', description: 'Dodge obstacles that drop to the beat!', icon: '\uD83C\uDFB6', gradient: 'linear-gradient(135deg, #00d4ff, #b44dff)', scoreUnit: '', category: 'skill' },
 
     // Strategy
     { id: 'tictactoe', title: 'Tic-Tac-Toe', description: 'Classic X vs O — AI or 2P!', icon: '\u274C', gradient: 'linear-gradient(135deg, #00d4ff, #ff2d7b)', scoreUnit: '', category: 'strategy', multiplayer: true, thumb: 'tictactoe.png' },
@@ -80,7 +89,8 @@ const GAMES = [
     { id: 'colorfill', title: 'Color Fill', description: 'Flood the board with one color.', icon: '\uD83C\uDF08', gradient: 'linear-gradient(135deg, #ff2d7b, #ffd60a)', scoreUnit: '', category: 'casual', thumb: 'colorfill.png' },
     { id: 'numbersort', title: 'Number Sort', description: 'Swap numbers into ascending order.', icon: '\uD83D\uDD22', gradient: 'linear-gradient(135deg, #00d4ff, #ffd60a)', scoreUnit: '', category: 'casual', thumb: 'numbersort.png' },
     { id: 'bubblepop', title: 'Bubble Pop', description: 'Pop rising bubbles before they escape!', icon: '\uD83E\uDEE7', gradient: 'linear-gradient(135deg, #00d4ff, #b44dff)', scoreUnit: '', category: 'casual', thumb: 'bubblepop.png' },
-    { id: 'matching', title: 'Pattern Match', description: 'Recreate the color pattern from memory.', icon: '\uD83D\uDDBC\uFE0F', gradient: 'linear-gradient(135deg, #b44dff, #ffd60a)', scoreUnit: '', category: 'casual', thumb: 'matching.png' }
+    { id: 'matching', title: 'Pattern Match', description: 'Recreate the color pattern from memory.', icon: '\uD83D\uDDBC\uFE0F', gradient: 'linear-gradient(135deg, #b44dff, #ffd60a)', scoreUnit: '', category: 'casual', thumb: 'matching.png' },
+    { id: 'idleclicker', title: 'Fake Rich', description: 'Click to earn, buy upgrades, prestige and repeat!', icon: '\uD83E\uDE99', gradient: 'linear-gradient(135deg, #ffd60a, #ff6d00)', scoreUnit: '', category: 'casual' }
 ];
 
 let activeCategory = 'all';
