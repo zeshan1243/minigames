@@ -13,7 +13,7 @@ const Solitaire = {
 
     // Suits & colors
     SUITS: ['♠', '♥', '♦', '♣'],
-    SUIT_COLORS: { '♠': '#e8e8f0', '♥': '#ff2d7b', '♦': '#ff2d7b', '♣': '#e8e8f0' },
+    SUIT_COLORS: { '♠': '#111111', '♥': '#cc0000', '♦': '#cc0000', '♣': '#111111' },
     RANKS: ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'],
 
     // Game state
@@ -618,14 +618,14 @@ const Solitaire = {
         ctx.shadowOffsetY = 2;
 
         // Card body
-        ctx.fillStyle = '#1e1e2e';
+        ctx.fillStyle = '#ffffff';
         this._roundRect(ctx, x, y, w, h, r);
         ctx.fill();
 
         ctx.shadowColor = 'transparent';
 
         // Border
-        ctx.strokeStyle = 'rgba(255,255,255,0.12)';
+        ctx.strokeStyle = 'rgba(0,0,0,0.15)';
         ctx.lineWidth = 1;
         this._roundRect(ctx, x, y, w, h, r);
         ctx.stroke();

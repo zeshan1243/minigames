@@ -12,7 +12,7 @@ const Hearts = {
     // Constants
     SUITS: ['clubs', 'diamonds', 'hearts', 'spades'],
     SUIT_SYMBOLS: { clubs: '\u2663', diamonds: '\u2666', hearts: '\u2665', spades: '\u2660' },
-    SUIT_COLORS: { clubs: '#e8e8f0', diamonds: '#ff2d7b', hearts: '#ff2d7b', spades: '#e8e8f0' },
+    SUIT_COLORS: { clubs: '#111111', diamonds: '#cc0000', hearts: '#cc0000', spades: '#111111' },
     VALUES: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
     VALUE_NAMES: { 2:'2', 3:'3', 4:'4', 5:'5', 6:'6', 7:'7', 8:'8', 9:'9', 10:'10', 11:'J', 12:'Q', 13:'K', 14:'A' },
     CARD_W: 60,
@@ -992,11 +992,11 @@ const Hearts = {
         ctx.shadowOffsetY = 2;
 
         this.roundRect(ctx, x, y, w, h, r);
-        ctx.fillStyle = '#1a1a2e';
+        ctx.fillStyle = '#ffffff';
         ctx.fill();
 
         ctx.shadowColor = 'transparent';
-        ctx.strokeStyle = highlighted ? '#00d4ff' : 'rgba(255,255,255,0.08)';
+        ctx.strokeStyle = highlighted ? '#00d4ff' : 'rgba(0,0,0,0.15)';
         ctx.lineWidth = highlighted ? 2 : 1;
         ctx.stroke();
 

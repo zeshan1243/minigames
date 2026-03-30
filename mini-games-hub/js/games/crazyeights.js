@@ -70,10 +70,10 @@ const CrazyEights = {
     SUITS: ['hearts', 'diamonds', 'clubs', 'spades'],
     SUIT_SYMBOLS: { hearts: '\u2665', diamonds: '\u2666', clubs: '\u2663', spades: '\u2660' },
     SUIT_COLORS: {
-        hearts: '#ff2d7b',
-        diamonds: '#ff2d7b',
-        clubs: '#e8e8f0',
-        spades: '#e8e8f0'
+        hearts: '#cc0000',
+        diamonds: '#cc0000',
+        clubs: '#111111',
+        spades: '#111111'
     },
     RANKS: ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'],
 
@@ -977,11 +977,11 @@ const CrazyEights = {
 
     drawCardFace(ctx, x, y, card) {
         // Card body
-        ctx.fillStyle = '#1e1e2a';
+        ctx.fillStyle = '#ffffff';
         this.roundRect(ctx, x, y, this.CARD_W, this.CARD_H, this.CARD_R);
         ctx.fill();
 
-        ctx.strokeStyle = '#333348';
+        ctx.strokeStyle = 'rgba(0,0,0,0.15)';
         ctx.lineWidth = 1;
         this.roundRect(ctx, x, y, this.CARD_W, this.CARD_H, this.CARD_R);
         ctx.stroke();

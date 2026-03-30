@@ -48,8 +48,8 @@ const War = {
     BG: '#0a0a0f',
     CARD_BACK_1: '#1a1a2e',
     CARD_BACK_2: '#12121a',
-    RED_SUIT: '#ff2d7b',
-    BLACK_SUIT: '#e8e8f0',
+    RED_SUIT: '#cc0000',
+    BLACK_SUIT: '#111111',
     ACCENT_CYAN: '#00d4ff',
     ACCENT_YELLOW: '#ffd60a',
     ACCENT_GREEN: '#00e676',
@@ -888,14 +888,14 @@ const War = {
         ctx.shadowBlur = 8;
         ctx.shadowOffsetY = 3;
 
-        // White-ish card body
-        ctx.fillStyle = '#1e1e2a';
+        // White card body
+        ctx.fillStyle = '#ffffff';
         this.roundRect(ctx, x, y, w, h, r);
         ctx.fill();
         ctx.shadowColor = 'transparent';
 
         // Slightly lighter inner area
-        ctx.fillStyle = '#252535';
+        ctx.fillStyle = '#f5f5f0';
         this.roundRect(ctx, x + 3, y + 3, w - 6, h - 6, r - 2);
         ctx.fill();
 
@@ -934,7 +934,7 @@ const War = {
         }
 
         // Border
-        ctx.strokeStyle = 'rgba(255,255,255,0.15)';
+        ctx.strokeStyle = 'rgba(0,0,0,0.15)';
         ctx.lineWidth = 1;
         this.roundRect(ctx, x, y, w, h, r);
         ctx.stroke();

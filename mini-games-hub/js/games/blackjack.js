@@ -715,7 +715,7 @@ const Blackjack = {
         const r = 6;
 
         // Card background
-        ctx.fillStyle = '#f0f0e8';
+        ctx.fillStyle = '#ffffff';
         this.roundRect(ctx, x, y, W, H, r);
         ctx.fill();
 
@@ -727,7 +727,7 @@ const Blackjack = {
 
         // Color
         const isRed = card.suit === 'hearts' || card.suit === 'diamonds';
-        ctx.fillStyle = isRed ? '#ff2d7b' : '#1a1a2e';
+        ctx.fillStyle = isRed ? '#cc0000' : '#111111';
 
         // Rank top-left
         ctx.font = 'bold 16px "JetBrains Mono", monospace';
