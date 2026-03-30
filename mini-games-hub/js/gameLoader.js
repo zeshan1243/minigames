@@ -158,7 +158,7 @@ async function init() {
     const modeLabel = mode === '2p' ? ' (2 Player)' : '';
     const pageTitle = `Play ${meta.title}${modeLabel} Free Online - Zehum Mini Games`;
     const pageDesc = `Play ${meta.title} for free online on Zehum Mini Games. No downloads, no installs. Challenge yourself and beat your high score!`;
-    const pageUrl = `https://zehum.com/game.html?id=${id}`;
+    const pageUrl = `https://zehum.com/game?id=${id}`;
 
     document.title = pageTitle;
     document.getElementById('gameTitle').textContent = meta.title + modeLabel;
@@ -411,7 +411,7 @@ function renderSuggested(currentId) {
     const picks = shuffled.slice(0, 6);
 
     grid.innerHTML = picks.map(game => `
-        <a href="game.html?id=${game.id}" class="suggested-card">
+        <a href="game?id=${game.id}" class="suggested-card">
             <div class="suggested-icon" style="background: ${game.gradient}">
                 <span>${game.icon}</span>
             </div>

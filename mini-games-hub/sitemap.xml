@@ -6,252 +6,252 @@
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=reaction</loc>
+        <loc>https://zehum.com/game?id=reaction</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=snake</loc>
+        <loc>https://zehum.com/game?id=snake</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=runner</loc>
+        <loc>https://zehum.com/game?id=runner</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=stack</loc>
+        <loc>https://zehum.com/game?id=stack</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=puzzle</loc>
+        <loc>https://zehum.com/game?id=puzzle</loc>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=colormatch</loc>
+        <loc>https://zehum.com/game?id=colormatch</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=whackamole</loc>
+        <loc>https://zehum.com/game?id=whackamole</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=aimtrainer</loc>
+        <loc>https://zehum.com/game?id=aimtrainer</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=typing</loc>
+        <loc>https://zehum.com/game?id=typing</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=quickmath</loc>
+        <loc>https://zehum.com/game?id=quickmath</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=tapcounter</loc>
+        <loc>https://zehum.com/game?id=tapcounter</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=simon</loc>
+        <loc>https://zehum.com/game?id=simon</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=catchball</loc>
+        <loc>https://zehum.com/game?id=catchball</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=patternmemory</loc>
+        <loc>https://zehum.com/game?id=patternmemory</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=breakout</loc>
+        <loc>https://zehum.com/game?id=breakout</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=pong</loc>
+        <loc>https://zehum.com/game?id=pong</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=flappy</loc>
+        <loc>https://zehum.com/game?id=flappy</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=asteroids</loc>
+        <loc>https://zehum.com/game?id=asteroids</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=spaceinvaders</loc>
+        <loc>https://zehum.com/game?id=spaceinvaders</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=tetris</loc>
+        <loc>https://zehum.com/game?id=tetris</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=doodlejump</loc>
+        <loc>https://zehum.com/game?id=doodlejump</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=game2048</loc>
+        <loc>https://zehum.com/game?id=game2048</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=slidingpuzzle</loc>
+        <loc>https://zehum.com/game?id=slidingpuzzle</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=minesweeper</loc>
+        <loc>https://zehum.com/game?id=minesweeper</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=tictactoe</loc>
+        <loc>https://zehum.com/game?id=tictactoe</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=connectfour</loc>
+        <loc>https://zehum.com/game?id=connectfour</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=lightsout</loc>
+        <loc>https://zehum.com/game?id=lightsout</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=pipeconnect</loc>
+        <loc>https://zehum.com/game?id=pipeconnect</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=towerofhanoi</loc>
+        <loc>https://zehum.com/game?id=towerofhanoi</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=helicopter</loc>
+        <loc>https://zehum.com/game?id=helicopter</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=ballbounce</loc>
+        <loc>https://zehum.com/game?id=ballbounce</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=knifethrow</loc>
+        <loc>https://zehum.com/game?id=knifethrow</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=archery</loc>
+        <loc>https://zehum.com/game?id=archery</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=darts</loc>
+        <loc>https://zehum.com/game?id=darts</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=rhythmtap</loc>
+        <loc>https://zehum.com/game?id=rhythmtap</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=maze</loc>
+        <loc>https://zehum.com/game?id=maze</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=colorfill</loc>
+        <loc>https://zehum.com/game?id=colorfill</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=memorycards</loc>
+        <loc>https://zehum.com/game?id=memorycards</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=numbersort</loc>
+        <loc>https://zehum.com/game?id=numbersort</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=bubblepop</loc>
+        <loc>https://zehum.com/game?id=bubblepop</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=rps</loc>
+        <loc>https://zehum.com/game?id=rps</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=wordsearch</loc>
+        <loc>https://zehum.com/game?id=wordsearch</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=sudoku</loc>
+        <loc>https://zehum.com/game?id=sudoku</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=golfputt</loc>
+        <loc>https://zehum.com/game?id=golfputt</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=fruitslicer</loc>
+        <loc>https://zehum.com/game?id=fruitslicer</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=platformer</loc>
+        <loc>https://zehum.com/game?id=platformer</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=dodger</loc>
+        <loc>https://zehum.com/game?id=dodger</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=pinball</loc>
+        <loc>https://zehum.com/game?id=pinball</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=tanks</loc>
+        <loc>https://zehum.com/game?id=tanks</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zehum.com/game.html?id=matching</loc>
+        <loc>https://zehum.com/game?id=matching</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>

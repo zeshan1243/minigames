@@ -120,10 +120,10 @@ function renderCards() {
 
         const modeButtons = game.multiplayer
             ? `<div class="mode-buttons">
-                   <a href="game.html?id=${game.id}&mode=1p" class="btn btn-play">1 Player</a>
-                   <a href="game.html?id=${game.id}&mode=2p" class="btn btn-play btn-2p">2 Players</a>
+                   <a href="game?id=${game.id}&mode=1p" class="btn btn-play">1 Player</a>
+                   <a href="game?id=${game.id}&mode=2p" class="btn btn-play btn-2p">2 Players</a>
                </div>`
-            : `<a href="game.html?id=${game.id}" class="btn btn-play">Play</a>`;
+            : `<a href="game?id=${game.id}" class="btn btn-play">Play</a>`;
 
         const thumb = game.thumb
             ? `<img class="card-thumb-img" src="assets/thumbnails/${game.thumb}" alt="${game.title}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
