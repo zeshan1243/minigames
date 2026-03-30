@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zehum Mini Games</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-inner">
+            <a href="index.html" class="logo"><img src="assets/logo.svg" alt="Zehum Mini Games" class="logo-img"></a>
+            <a href="index.html" class="back-btn">&larr; Back to Games</a>
+        </div>
+    </header>
+
+    <main class="game-page">
+        <h2 class="game-title" id="gameTitle">Loading...</h2>
+
+        <div class="score-bar" id="scoreBar">
+            <div class="score-item">
+                <span class="score-label">Score</span>
+                <span class="score-value" id="currentScore">0</span>
+            </div>
+            <div class="score-item">
+                <span class="score-label">Best</span>
+                <span class="score-value" id="highScore">0</span>
+            </div>
+        </div>
+
+        <div class="canvas-wrapper" id="canvasWrapper">
+            <canvas id="gameCanvas"></canvas>
+
+            <div class="game-overlay" id="levelSelect" style="display:none;">
+                <div class="overlay-card level-select-card">
+                    <h3>Select Difficulty</h3>
+                    <div class="level-buttons" id="levelButtons">
+                        <!-- Rendered by gameLoader.js -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-overlay" id="gameOverlay" style="display:none;">
+                <div class="overlay-card">
+                    <h3 id="overlayTitle">Game Over</h3>
+                    <p class="overlay-score">Score: <span id="overlayScore">0</span></p>
+                    <p class="overlay-best">Best: <span id="overlayBest">0</span></p>
+                    <div class="overlay-actions">
+                        <button class="btn btn-primary" id="playAgainBtn">Play Again</button>
+                        <button class="btn btn-secondary" id="shareBtn">Share Score</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-overlay" id="pauseOverlay" style="display:none;">
+                <div class="overlay-card">
+                    <h3>Paused</h3>
+                    <p class="overlay-hint">Press P to resume</p>
+                    <button class="btn btn-primary" id="resumeBtn">Resume</button>
+                </div>
+            </div>
+        </div>
+
+        <p class="controls-hint" id="controlsHint"></p>
+
+        <div class="game-error" id="gameError" style="display:none;">
+            <h2>Game Not Found</h2>
+            <p>The requested game does not exist.</p>
+            <a href="index.html" class="btn btn-primary">Back to Games</a>
+        </div>
+
+        <section class="suggested-section" id="suggestedSection">
+            <h3 class="suggested-title">More Games</h3>
+            <div class="suggested-grid" id="suggestedGrid">
+                <!-- Rendered by gameLoader.js -->
+            </div>
+        </section>
+    </main>
+
+    <div class="bg-orb bg-orb-1"></div>
+    <div class="bg-orb bg-orb-2"></div>
+
+    <!-- Cookie Consent Banner -->
+    <div class="cookie-banner" id="cookieBanner" style="display:none;">
+        <div class="cookie-inner">
+            <p class="cookie-text">We use cookies to improve your experience, analyze traffic, and show personalized ads. By clicking "Accept", you consent to our use of cookies.</p>
+            <div class="cookie-actions">
+                <button class="btn btn-primary" id="cookieAccept">Accept All</button>
+                <button class="btn btn-secondary" id="cookieDecline">Decline</button>
+                <a href="#" class="cookie-link" id="cookieSettings">Cookie Settings</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cookie Settings Modal -->
+    <div class="cookie-modal" id="cookieModal" style="display:none;">
+        <div class="cookie-modal-card">
+            <h3>Cookie Settings</h3>
+            <div class="cookie-option">
+                <label><input type="checkbox" checked disabled> <strong>Essential</strong></label>
+                <p>Required for the site to function. Cannot be disabled.</p>
+            </div>
+            <div class="cookie-option">
+                <label><input type="checkbox" id="cookieAnalytics" checked> <strong>Analytics</strong></label>
+                <p>Help us understand how visitors use our site (Google Analytics).</p>
+            </div>
+            <div class="cookie-option">
+                <label><input type="checkbox" id="cookieAds" checked> <strong>Advertising</strong></label>
+                <p>Used to show relevant ads (Google AdSense).</p>
+            </div>
+            <div class="cookie-option">
+                <label><input type="checkbox" id="cookieFeedback" checked> <strong>Feedback</strong></label>
+                <p>Helps us collect user feedback to improve the site (Hotjar).</p>
+            </div>
+            <div class="cookie-actions">
+                <button class="btn btn-primary" id="cookieSaveSettings">Save Settings</button>
+                <button class="btn btn-secondary" id="cookieModalClose">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/cookies.js"></script>
+    <script src="js/adblock-detect.js"></script>
+    <script type="module" src="js/gameLoader.js"></script>
+</body>
+</html>
