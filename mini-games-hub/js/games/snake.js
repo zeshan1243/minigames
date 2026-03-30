@@ -42,7 +42,7 @@ const Snake = {
         this.canvas = canvas;
         this.ctx = ctx;
         this.ui = ui;
-        this.cellSize = ui.canvasW / this.gridSize;
+        this.cellSize = Math.min(ui.canvasW, ui.canvasH) / this.gridSize;
         this.handleKey = this.handleKey.bind(this);
         this.handleTouchStart = this.handleTouchStart.bind(this);
         this.handleTouchEnd = this.handleTouchEnd.bind(this);
@@ -129,10 +129,23 @@ const Snake = {
         this.walls = [];
         const count = this._wallCount || 0;
         if (count === 0) return;
-        // Collect occupied positions (snake start positions)
+        // Collect occupied positions (snake start positions + buffer zone around head)
         const occupied = new Set(this.snake.map(s => `${s.x},${s.y}`));
+        // Add a safety buffer around the snake head so walls don't spawn in the immediate path
+        const head = this.snake[0];
+        for (let dx = -3; dx <= 3; dx++) {
+            for (let dy = -3; dy <= 3; dy++) {
+                occupied.add(`${head.x + dx},${head.y + dy}`);
+            }
+        }
         if (this.is2P()) {
             this.snake2.forEach(s => occupied.add(`${s.x},${s.y}`));
+            const head2 = this.snake2[0];
+            for (let dx = -3; dx <= 3; dx++) {
+                for (let dy = -3; dy <= 3; dy++) {
+                    occupied.add(`${head2.x + dx},${head2.y + dy}`);
+                }
+            }
         }
         let placed = 0;
         let attempts = 0;
@@ -454,7 +467,7 @@ const Snake = {
             p.vy *= 0.96;
             p.life++;
             const alpha = 1 - p.life / p.maxLife;
-            const size = 3 * alpha;
+            const size = Math.max(0, 3 * alpha);
             ctx.globalAlpha = alpha;
             ctx.fillStyle = p.color;
             ctx.beginPath();
@@ -545,7 +558,7 @@ const Snake = {
             const dir1 = map1[e.key];
             if (dir1) {
                 e.preventDefault();
-                if (dir1 !== opposites[this.direction]) {
+                if (dir1 !== opposites[this.nextDirection]) {
                     this.nextDirection = dir1;
                 }
                 return;
@@ -553,7 +566,7 @@ const Snake = {
             const dir2 = map2[e.key];
             if (dir2) {
                 e.preventDefault();
-                if (dir2 !== opposites[this.direction2]) {
+                if (dir2 !== opposites[this.nextDirection2]) {
                     this.nextDirection2 = dir2;
                 }
                 return;
@@ -568,7 +581,7 @@ const Snake = {
             if (!dir) return;
             e.preventDefault();
             const opposites = { up: 'down', down: 'up', left: 'right', right: 'left' };
-            if (dir !== opposites[this.direction]) {
+            if (dir !== opposites[this.nextDirection]) {
                 this.nextDirection = dir;
             }
         }
@@ -592,7 +605,7 @@ const Snake = {
         } else {
             dir = dy > 0 ? 'down' : 'up';
         }
-        if (dir !== opposites[this.direction]) {
+        if (dir !== opposites[this.nextDirection]) {
             this.nextDirection = dir;
         }
     },

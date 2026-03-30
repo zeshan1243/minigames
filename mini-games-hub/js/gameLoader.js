@@ -58,6 +58,7 @@ const CANVAS_H = 620;
 
 // Per-game canvas size overrides
 const CANVAS_OVERRIDES = {
+    snake:         { w: 620, h: 620 },
     pong:          { w: 900, h: 440 },
     tanks:         { w: 900, h: 620 },
     asteroids:     { w: 900, h: 620 },
@@ -155,9 +156,34 @@ async function init() {
     }
 
     const modeLabel = mode === '2p' ? ' (2 Player)' : '';
-    document.title = `${meta.title}${modeLabel} \u2014 Zehum Mini Games`;
+    const pageTitle = `Play ${meta.title}${modeLabel} Free Online - Zehum Mini Games`;
+    const pageDesc = `Play ${meta.title} for free online on Zehum Mini Games. No downloads, no installs. Challenge yourself and beat your high score!`;
+    const pageUrl = `https://zehum.com/game.html?id=${id}`;
+
+    document.title = pageTitle;
     document.getElementById('gameTitle').textContent = meta.title + modeLabel;
     document.getElementById('controlsHint').textContent = meta.hint;
+
+    // Update meta tags for SEO / social sharing
+    const descTag = document.querySelector('meta[name="description"]');
+    if (descTag) descTag.setAttribute('content', pageDesc);
+    const ogTitle = document.getElementById('ogTitle');
+    if (ogTitle) ogTitle.setAttribute('content', pageTitle);
+    const ogDesc = document.getElementById('ogDescription');
+    if (ogDesc) ogDesc.setAttribute('content', pageDesc);
+    const ogUrl = document.getElementById('ogUrl');
+    if (ogUrl) ogUrl.setAttribute('content', pageUrl);
+    const twTitle = document.getElementById('twTitle');
+    if (twTitle) twTitle.setAttribute('content', pageTitle);
+    const twDesc = document.getElementById('twDescription');
+    if (twDesc) twDesc.setAttribute('content', pageDesc);
+    const canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+        const link = document.createElement('link');
+        link.rel = 'canonical';
+        link.href = pageUrl;
+        document.head.appendChild(link);
+    }
 
     const canvas = document.getElementById('gameCanvas');
     const override = CANVAS_OVERRIDES[id];
@@ -205,7 +231,18 @@ async function init() {
         };
     }
 
+    let playCount = 0;
+
+    function shouldShowInterstitial() {
+        playCount++;
+        // Show on 1st play, then every 10th play after that
+        return playCount === 1 || playCount % 10 === 0;
+    }
+
     function showInterstitial() {
+        if (!shouldShowInterstitial()) {
+            return Promise.resolve();
+        }
         return new Promise(resolve => {
             const overlay = document.getElementById('interstitialOverlay');
             const timerEl = document.getElementById('interstitialTimer');

@@ -67,8 +67,8 @@ const CatchBall = {
     handleTouchMove(e) { e.preventDefault(); const r = this.canvas.getBoundingClientRect(); this.paddle.x = Math.max(0, Math.min(this.ui.canvasW - this.paddle.w, e.touches[0].clientX - r.left - this.paddle.w/2)); },
     handleKey(e) {
         if (e.key === 'p' || e.key === 'P') { this.paused = !this.paused; if (this.paused) this.ui.showPause(); else this.ui.hidePause(); return; }
-        if (e.key === 'ArrowLeft') this.paddle.x = Math.max(0, this.paddle.x - 20);
-        if (e.key === 'ArrowRight') this.paddle.x = Math.min(this.ui.canvasW - this.paddle.w, this.paddle.x + 20);
+        if (e.key === 'ArrowLeft') { e.preventDefault(); this.paddle.x = Math.max(0, this.paddle.x - 20); }
+        if (e.key === 'ArrowRight') { e.preventDefault(); this.paddle.x = Math.min(this.ui.canvasW - this.paddle.w, this.paddle.x + 20); }
     },
 
     render() {

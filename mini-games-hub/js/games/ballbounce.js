@@ -287,6 +287,7 @@ const BallBounce = {
             this.togglePause();
             return;
         }
+        if (['ArrowLeft','ArrowRight','ArrowUp','ArrowDown',' '].includes(e.key)) e.preventDefault();
         this.keys[e.key] = true;
     },
 

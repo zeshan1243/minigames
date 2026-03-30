@@ -128,8 +128,8 @@ const Pong = {
             if (e.key === 's' || e.key === 'S') this.player.y = Math.min(this.ui.canvasH - this.player.h, this.player.y + 20);
             if (e.key === 'ArrowUp' || e.key === 'ArrowDown') e.preventDefault();
         } else {
-            if (e.key === 'ArrowUp') this.player.y = Math.max(0, this.player.y - 20);
-            if (e.key === 'ArrowDown') this.player.y = Math.min(this.ui.canvasH - this.player.h, this.player.y + 20);
+            if (e.key === 'ArrowUp') { e.preventDefault(); this.player.y = Math.max(0, this.player.y - 20); }
+            if (e.key === 'ArrowDown') { e.preventDefault(); this.player.y = Math.min(this.ui.canvasH - this.player.h, this.player.y + 20); }
         }
     },
     handleKeyUp(e) {

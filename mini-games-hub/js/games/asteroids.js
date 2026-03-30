@@ -7,7 +7,7 @@ const Asteroids = {
 
     init(canvas, ctx, ui) {
         this.canvas = canvas; this.ctx = ctx; this.ui = ui;
-        this.handleKeyDown = (e) => { this.keys[e.key] = true; if (e.key === ' ') { e.preventDefault(); this.shoot(); } if (e.key === 'p' || e.key === 'P') { this.paused = !this.paused; if (this.paused) ui.showPause(); else ui.hidePause(); } };
+        this.handleKeyDown = (e) => { if (['ArrowUp','ArrowDown','ArrowLeft','ArrowRight',' '].includes(e.key)) e.preventDefault(); this.keys[e.key] = true; if (e.key === ' ') { this.shoot(); } if (e.key === 'p' || e.key === 'P') { this.paused = !this.paused; if (this.paused) ui.showPause(); else ui.hidePause(); } };
         this.handleKeyUp = (e) => { this.keys[e.key] = false; };
         this.handleTouch = this.handleTouch.bind(this);
         document.addEventListener('keydown', this.handleKeyDown);
