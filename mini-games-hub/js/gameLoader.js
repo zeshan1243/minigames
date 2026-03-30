@@ -70,6 +70,16 @@ const GAME_META = {
     crazyeights:   { title: 'Crazy Eights',           hint: 'Click cards to play \u2022 Click stock to draw \u2022 Arrows + Enter \u2022 P to pause', module: './games/cards/crazyeights.js' },
     war:           { title: 'War',                    hint: 'Click, tap, or SPACE to battle \u2022 P to pause', module: './games/cards/war.js' },
 
+    // Geography
+    pincountry:    { title: 'Pin the Country',       hint: 'Click the correct location on the map', module: './games/geography/pincountry.js' },
+    flagguess:     { title: 'Guess the Flag',        hint: 'Click answer or press 1-4 \u2022 P to pause', module: './games/geography/flagguess.js' },
+    capitalrush:   { title: 'Capital City Rush',     hint: 'Type the capital and press Enter \u2022 P to pause', module: './games/geography/capitalrush.js' },
+    distanceguess: { title: 'Distance Guess',        hint: 'Drag slider or use arrows \u2022 Enter to submit', module: './games/geography/distanceguess.js' },
+    shapeguess:    { title: 'Country Shape',         hint: 'Click answer or press 1-4 \u2022 P to pause', module: './games/geography/shapeguess.js' },
+    geosprint:     { title: 'Geography Sprint',      hint: 'Click answer or press 1-4 \u2022 P to pause', module: './games/geography/geosprint.js' },
+    neighbors:     { title: 'Neighbor Finder',       hint: 'Click all neighboring countries \u2022 P to pause', module: './games/geography/neighbors.js' },
+    worldexplorer: { title: 'World Explorer',        hint: 'Click on the map to discover regions and landmarks', module: './games/geography/worldexplorer.js' },
+
     // Casual
     simon:         { title: 'Simon Says',          hint: 'Watch the pattern, then tap it back', module: './games/casual/simon.js' },
     patternmemory: { title: 'Pattern Memory',     hint: 'Memorize the pattern, then tap the cells', module: './games/casual/patternmemory.js' },

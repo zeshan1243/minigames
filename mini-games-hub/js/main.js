@@ -8,6 +8,7 @@ const CATEGORIES = [
     { key: 'skill', label: 'Skill & Timing' },
     { key: 'strategy', label: 'Strategy' },
     { key: 'cards', label: 'Card Games' },
+    { key: 'geography', label: 'Geography' },
     { key: 'casual', label: 'Casual' },
     { key: 'multiplayer', label: '2 Player' }
 ];
@@ -81,6 +82,16 @@ const GAMES = [
     { id: 'war', title: 'War', description: 'Flip cards and battle the AI — highest card wins!', icon: '\u2694\uFE0F', gradient: 'linear-gradient(135deg, #ff2d7b, #ffd60a)', scoreUnit: '', category: 'cards', thumb: 'war.png' },
     { id: 'crazyeights', title: 'Crazy Eights', description: 'Match suits or ranks, play 8s wild!', icon: '\uD83C\uDCCF', gradient: 'linear-gradient(135deg, #ffd60a, #ff2d7b)', scoreUnit: '', category: 'cards', thumb: 'crazyeights.png' },
     { id: 'solitaire', title: 'Solitaire', description: 'Classic Klondike — stack cards, clear the board.', icon: '\uD83C\uDCC1', gradient: 'linear-gradient(135deg, #00e676, #1a5c3a)', scoreUnit: '', category: 'cards', thumb: 'solitaire.png' },
+
+    // Geography
+    { id: 'pincountry', title: 'Pin the Country', description: 'Click the correct location on the world map!', icon: '\uD83D\uDDFA\uFE0F', gradient: 'linear-gradient(135deg, #00e676, #00d4ff)', scoreUnit: '', category: 'geography' },
+    { id: 'flagguess', title: 'Guess the Flag', description: 'Identify countries by their flags — fast!', icon: '\uD83C\uDFF3\uFE0F', gradient: 'linear-gradient(135deg, #ff2d7b, #00d4ff)', scoreUnit: '', category: 'geography' },
+    { id: 'capitalrush', title: 'Capital City Rush', description: 'Type the capital city before time runs out!', icon: '\uD83C\uDFDB\uFE0F', gradient: 'linear-gradient(135deg, #ffd60a, #ff6d00)', scoreUnit: '', category: 'geography' },
+    { id: 'distanceguess', title: 'Distance Guess', description: 'How far apart are these two cities?', icon: '\uD83D\uDCCF', gradient: 'linear-gradient(135deg, #00d4ff, #b44dff)', scoreUnit: '', category: 'geography' },
+    { id: 'shapeguess', title: 'Country Shape', description: 'Guess the country from its silhouette!', icon: '\uD83E\uDDE9', gradient: 'linear-gradient(135deg, #00d4ff, #00e676)', scoreUnit: '', category: 'geography' },
+    { id: 'geosprint', title: 'Geography Sprint', description: 'Rapid-fire geography questions — how far can you go?', icon: '\uD83D\uDE80', gradient: 'linear-gradient(135deg, #ff2d7b, #ffd60a)', scoreUnit: '', category: 'geography' },
+    { id: 'neighbors', title: 'Neighbor Finder', description: 'Select all countries that border this one!', icon: '\uD83E\uDDED', gradient: 'linear-gradient(135deg, #00e676, #ffd60a)', scoreUnit: '', category: 'geography' },
+    { id: 'worldexplorer', title: 'World Explorer', description: 'Click to discover regions and hidden landmarks!', icon: '\uD83C\uDF0D', gradient: 'linear-gradient(135deg, #00d4ff, #00e676)', scoreUnit: '', category: 'geography' },
 
     // Casual
     { id: 'simon', title: 'Simon Says', description: 'Remember and repeat the color sequence.', icon: '\uD83D\uDFE2', gradient: 'linear-gradient(135deg, #00e676, #ffd60a)', scoreUnit: '', category: 'casual', thumb: 'simon.png' },
