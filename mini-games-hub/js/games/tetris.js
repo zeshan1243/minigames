@@ -183,6 +183,7 @@ const Tetris = {
         if (e.key === 'p' || e.key === 'P') { this.paused = !this.paused; if (this.paused) this.ui.showPause(); else this.ui.hidePause(); return; }
         if (this.paused) return;
         if (this.flashRows.length > 0) return; // block input during flash
+        if (['ArrowLeft','ArrowRight','ArrowDown','ArrowUp'].includes(e.key)) e.preventDefault();
         if (e.key === 'ArrowLeft' || e.key === 'a') { if (!this.collides(this.current.shape, this.current.x - 1, this.current.y)) this.current.x--; }
         if (e.key === 'ArrowRight' || e.key === 'd') { if (!this.collides(this.current.shape, this.current.x + 1, this.current.y)) this.current.x++; }
         if (e.key === 'ArrowDown' || e.key === 's') { if (!this.collides(this.current.shape, this.current.x, this.current.y + 1)) { this.current.y++; this.score++; this.ui.setScore(this.score); } }

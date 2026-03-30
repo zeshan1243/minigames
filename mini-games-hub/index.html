@@ -104,8 +104,32 @@
         </div>
     </div>
 
+    <!-- Sticky Bottom Ad (mobile/tablet) -->
+    <div class="ad-bottom-bar" id="adBottomBar">
+        <div class="ad-bottom-inner">
+            <button class="ad-bottom-close" id="adBottomClose" aria-label="Close ad">&times;</button>
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:320px;height:100px"
+                 data-ad-client="ca-pub-3366385543056829"
+                 data-ad-slot="7250058413"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+    </div>
+
     <script src="js/cookies.js"></script>
     <script src="js/adblock-detect.js"></script>
     <script type="module" src="js/main.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var closeBtn = document.getElementById('adBottomClose');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', function() {
+                var bar = document.getElementById('adBottomBar');
+                if (bar) bar.style.display = 'none';
+                document.body.style.paddingBottom = '0';
+            });
+        }
+    });
+    </script>
 </body>
 </html>
