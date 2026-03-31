@@ -23,10 +23,22 @@ const Helicopter = {
 
     start() {
         this.ui.hideGameOver(); this.ui.hidePause();
+
+        // Difficulty levels
+        const level = (this.ui && this.ui.level) || 'medium';
+        if (level === 'easy') {
+            this.baseSpeed = 1.5; this.gapMin = 180; this.gapShrink = 0.01; this.obstacleInterval = 160;
+        } else if (level === 'hard') {
+            this.baseSpeed = 2.8; this.gapMin = 110; this.gapShrink = 0.03; this.obstacleInterval = 80;
+        } else {
+            this.baseSpeed = 2; this.gapMin = 140; this.gapShrink = 0.02; this.obstacleInterval = 120;
+        }
+
         this.score = 0; this.gameOver = false; this.paused = false;
         this.holding = false; this.particles = [];
         this.speed = this.baseSpeed;
-        this.obstacles = []; this.obstacleTimer = 0; this.obstacleInterval = 120;
+        this.obstacles = []; this.obstacleTimer = 0;
+        this.scrollPos = 0; this._trimmedCount = 0;
 
         const w = this.ui.canvasW, h = this.ui.canvasH;
         this.heli = { x: w * 0.2, y: h / 2, vy: 0, w: 30, h: 14 };
@@ -79,13 +91,13 @@ const Helicopter = {
     },
 
     update(dt) {
+        const w = this.ui.canvasW;
         const h = this.ui.canvasH;
         const heli = this.heli;
 
         // Physics
         if (this.holding) {
             heli.vy -= 0.35 * dt;
-            // Thrust particles
             if (Math.random() < 0.6) {
                 this.particles.push({
                     x: heli.x - heli.w / 2, y: heli.y + heli.h / 2,
@@ -99,13 +111,25 @@ const Helicopter = {
         heli.vy = Math.max(-6, Math.min(6, heli.vy));
         heli.y += heli.vy * dt;
 
+        // Boundary check — die if heli goes off screen
+        if (heli.y - heli.h / 2 < 0 || heli.y + heli.h / 2 > h) {
+            this.endGame(); return;
+        }
+
         // Scroll speed increases
         this.speed = this.baseSpeed + this.score * 0.0008;
         this.score += this.speed * dt * 0.3;
         this.ui.setScore(Math.floor(this.score));
 
-        // Generate more cave ahead
-        while (this.caveSegments.length < Math.ceil(this.score / this.segmentW) + this.ui.canvasW / this.segmentW + 50) {
+        // Track scroll position in segments
+        if (!this.scrollPos) this.scrollPos = 0;
+        this.scrollPos += this.speed * dt;
+
+        // Generate more cave ahead and trim old segments
+        const segsOnScreen = Math.ceil(w / this.segmentW) + 10;
+        const currentSeg = Math.floor(this.scrollPos / this.segmentW);
+
+        while (this.caveSegments.length < currentSeg + segsOnScreen + 50) {
             const prev = this.caveSegments[this.caveSegments.length - 1];
             let top = prev.top + (Math.random() - 0.48) * 4;
             const gap = Math.max(this.gapMin - this.score * this.gapShrink, 80);
@@ -115,14 +139,20 @@ const Helicopter = {
             this.caveSegments.push({ top, bot });
         }
 
-        // Spawn obstacles (hurdles)
+        // Trim old segments to prevent memory growth
+        if (this.caveSegments.length > segsOnScreen + 200) {
+            const trimCount = this.caveSegments.length - (segsOnScreen + 150);
+            this.caveSegments.splice(0, trimCount);
+            this._trimmedCount = (this._trimmedCount || 0) + trimCount;
+        }
+
+        // Spawn obstacles
         this.obstacleTimer += dt;
         if (this.obstacleTimer >= this.obstacleInterval) {
             this.obstacleTimer = 0;
-            // Decrease interval as score increases (more frequent)
             this.obstacleInterval = Math.max(50, 120 - this.score * 0.03);
-            const segIdx2 = Math.floor(this.score / this.segmentW) + Math.floor(w / this.segmentW);
-            const seg = this.caveSegments[Math.min(segIdx2, this.caveSegments.length - 1)];
+            const segIdx2 = currentSeg + Math.floor(w / this.segmentW) - (this._trimmedCount || 0);
+            const seg = this.caveSegments[Math.max(0, Math.min(segIdx2, this.caveSegments.length - 1))];
             if (seg) {
                 const caveH = seg.bot - seg.top;
                 const obstH = 20 + Math.random() * (caveH * 0.35);
@@ -142,7 +172,6 @@ const Helicopter = {
             const ob = this.obstacles[i];
             ob.x -= this.speed * dt;
             if (ob.x + ob.w < 0) { this.obstacles.splice(i, 1); continue; }
-            // Collision with helicopter
             if (heli.x + heli.w / 2 > ob.x && heli.x - heli.w / 2 < ob.x + ob.w &&
                 heli.y + heli.h / 2 > ob.y && heli.y - heli.h / 2 < ob.y + ob.h) {
                 this.endGame(); return;
@@ -150,9 +179,10 @@ const Helicopter = {
         }
 
         // Collision check (cave walls)
-        const segIdx = Math.floor(this.score / this.segmentW);
+        const baseIdx = currentSeg - (this._trimmedCount || 0);
+        const heliSegOff = Math.floor(heli.x / this.segmentW);
         for (let i = -2; i <= 2; i++) {
-            const si = segIdx + Math.floor(heli.x / this.segmentW) + i;
+            const si = baseIdx + heliSegOff + i;
             if (si < 0 || si >= this.caveSegments.length) continue;
             const seg = this.caveSegments[si];
             if (heli.y - heli.h / 2 < seg.top || heli.y + heli.h / 2 > seg.bot) {
@@ -160,7 +190,8 @@ const Helicopter = {
             }
         }
 
-        // Update particles
+        // Update particles (cap count)
+        if (this.particles.length > 100) this.particles.splice(0, this.particles.length - 100);
         for (let i = this.particles.length - 1; i >= 0; i--) {
             const p = this.particles[i];
             p.x += p.vx * dt; p.y += p.vy * dt;
@@ -182,8 +213,8 @@ const Helicopter = {
         const ctx = this.ctx, w = this.ui.canvasW, h = this.ui.canvasH;
         ctx.fillStyle = '#0a0a0f'; ctx.fillRect(0, 0, w, h);
 
-        const scrollOffset = this.score * (this.segmentW);
-        const startSeg = Math.floor(scrollOffset / this.segmentW);
+        const currentSeg = Math.floor((this.scrollPos || 0) / this.segmentW);
+        const startSeg = currentSeg - (this._trimmedCount || 0);
 
         // Draw cave
         ctx.fillStyle = '#111128';

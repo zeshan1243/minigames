@@ -475,34 +475,34 @@ const DistanceGuess = {
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
 
-            ctx.fillStyle = '#00d4ff';
-            ctx.font = 'bold 28px Outfit, sans-serif';
-            ctx.fillText(c1.name, w / 2 - 20, 265);
+            // Auto-size font to fit both names
+            let fontSize = 24;
+            ctx.font = 'bold ' + fontSize + 'px Outfit, sans-serif';
+            let name1W = ctx.measureText(c1.name).width;
+            let name2W = ctx.measureText(c2.name).width;
+            let totalW = name1W + 50 + name2W;
+            while (totalW > w - 60 && fontSize > 14) {
+                fontSize -= 2;
+                ctx.font = 'bold ' + fontSize + 'px Outfit, sans-serif';
+                name1W = ctx.measureText(c1.name).width;
+                name2W = ctx.measureText(c2.name).width;
+                totalW = name1W + 50 + name2W;
+            }
 
-            ctx.fillStyle = '#8888a0';
-            ctx.font = '24px Outfit, sans-serif';
-            ctx.fillText('\u2192', w / 2 + 60 + ctx.measureText(c1.name).width / 2 - 60, 265);
-
-            // Measure to position arrow properly
-            const name1W = ctx.measureText(c1.name).width;
-            ctx.font = 'bold 28px Outfit, sans-serif';
-            const name2W = ctx.measureText(c2.name).width;
-            const totalW = name1W + 40 + name2W; // 40 for arrow spacing
             const startX = (w - totalW) / 2;
-
-            // Redraw properly centered
-            ctx.fillStyle = '#00d4ff';
-            ctx.font = 'bold 28px Outfit, sans-serif';
             ctx.textAlign = 'left';
+
+            ctx.fillStyle = '#00d4ff';
+            ctx.font = 'bold ' + fontSize + 'px Outfit, sans-serif';
             ctx.fillText(c1.name, startX, 265);
 
             ctx.fillStyle = '#8888a0';
-            ctx.font = '24px Outfit, sans-serif';
-            ctx.fillText('\u2192', startX + name1W + 10, 265);
+            ctx.font = (fontSize - 4) + 'px Outfit, sans-serif';
+            ctx.fillText('\u2192', startX + name1W + 15, 265);
 
             ctx.fillStyle = '#ff2d7b';
-            ctx.font = 'bold 28px Outfit, sans-serif';
-            ctx.fillText(c2.name, startX + name1W + 40, 265);
+            ctx.font = 'bold ' + fontSize + 'px Outfit, sans-serif';
+            ctx.fillText(c2.name, startX + name1W + 50, 265);
         }
 
         if (this.phase === 'guessing') {

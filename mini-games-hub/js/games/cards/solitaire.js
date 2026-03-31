@@ -425,6 +425,34 @@ const Solitaire = {
         this.ui.setScore(this.score);
     },
 
+    // ── Undo System ──
+
+    _saveState() {
+        const cloneCard = c => ({ suit: c.suit, rank: c.rank, label: c.label, faceUp: c.faceUp, animFlip: 0, animX: null, animY: null });
+        this.moveHistory.push({
+            stock: this.stock.map(cloneCard),
+            waste: this.waste.map(cloneCard),
+            foundations: this.foundations.map(f => f.map(cloneCard)),
+            tableau: this.tableau.map(col => col.map(cloneCard)),
+            score: this.score
+        });
+        // Keep max 20 undo steps
+        if (this.moveHistory.length > 20) this.moveHistory.shift();
+    },
+
+    _undo() {
+        if (this.moveHistory.length === 0 || this.gameOver || this.autoCompleting || this.dealAnimating) return;
+        const state = this.moveHistory.pop();
+        this.stock = state.stock;
+        this.waste = state.waste;
+        this.foundations = state.foundations;
+        this.tableau = state.tableau;
+        this.score = state.score;
+        this.ui.setScore(this.score);
+        this.dragging = null;
+        this.animations = [];
+    },
+
     // ── Rendering ──
 
     _render(time) {
@@ -457,8 +485,37 @@ const Solitaire = {
             this._renderDragCards(ctx);
         }
 
+        // Undo button
+        this._renderUndoButton(ctx, W, H);
+
         // Particles
         this._renderParticles(ctx);
+    },
+
+    _renderUndoButton(ctx, W, H) {
+        const hasUndo = this.moveHistory.length > 0;
+        const bw = 70, bh = 28;
+        const bx = W - bw - 12;
+        const by = H - bh - 10;
+        this._undoBtnRect = { x: bx, y: by, w: bw, h: bh };
+
+        ctx.save();
+        ctx.globalAlpha = hasUndo ? 0.9 : 0.3;
+        ctx.fillStyle = '#1a1a2e';
+        ctx.beginPath();
+        ctx.roundRect(bx, by, bw, bh, 6);
+        ctx.fill();
+        ctx.strokeStyle = hasUndo ? '#00d4ff' : '#333';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+
+        ctx.fillStyle = hasUndo ? '#00d4ff' : '#555';
+        ctx.font = 'bold 12px Outfit, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('\u21A9 Undo', bx + bw / 2, by + bh / 2);
+        ctx.textBaseline = 'alphabetic';
+        ctx.restore();
     },
 
     _renderStockPile(ctx) {
@@ -791,6 +848,10 @@ const Solitaire = {
             if (this.paused) this.resume();
             else if (!this.gameOver) this.pause();
         }
+        if ((e.key === 'z' || e.key === 'Z') && !this.paused) {
+            e.preventDefault();
+            this._undo();
+        }
     },
 
     _handleTouchStart(e) {
@@ -909,6 +970,12 @@ const Solitaire = {
     // ── Drag & Drop ──
 
     _startDrag(px, py) {
+        // Check undo button
+        if (this._undoBtnRect && this._hitRect(px, py, this._undoBtnRect.x, this._undoBtnRect.y, this._undoBtnRect.w, this._undoBtnRect.h)) {
+            this._undo();
+            return;
+        }
+
         const hit = this._hitTest(px, py);
         if (!hit) return;
 
@@ -975,6 +1042,16 @@ const Solitaire = {
         const dropX = this.dragX - this.dragging.offsetX + this.CARD_W / 2;
         const dropY = this.dragY - this.dragging.offsetY + this.CARD_H / 2;
 
+        // Save state before the move is applied (in case it succeeds)
+        const cc = c => ({ suit: c.suit, rank: c.rank, label: c.label, faceUp: c.faceUp, animFlip: 0, animX: null, animY: null });
+        const savedState = {
+            stock: this.stock.map(cc),
+            waste: this.waste.map(cc),
+            foundations: this.foundations.map(f => f.map(cc)),
+            tableau: this.tableau.map(col => col.map(cc)),
+            score: this.score
+        };
+
         let placed = false;
 
         // Try foundations (single card only)
@@ -1031,6 +1108,10 @@ const Solitaire = {
         // Return cards to source if not placed
         if (!placed) {
             this._returnDragToSource();
+        } else {
+            // Move succeeded — save the pre-move state for undo
+            this.moveHistory.push(savedState);
+            if (this.moveHistory.length > 20) this.moveHistory.shift();
         }
 
         this.dragging = null;
@@ -1077,6 +1158,7 @@ const Solitaire = {
     // ── Stock ──
 
     _drawFromStock() {
+        this._saveState();
         if (this.stock.length === 0) {
             // Recycle waste back to stock
             if (this.waste.length > 0) {
@@ -1153,6 +1235,7 @@ const Solitaire = {
         // Try each foundation
         const fi = this._findFoundationTarget(card);
         if (fi >= 0) {
+            this._saveState();
             const fromPos = hit.type === 'waste' ? this.wastePos :
                 this._getTableauCardPos(sourceIdx, this.tableau[sourceIdx].length - 1);
             removeCard();

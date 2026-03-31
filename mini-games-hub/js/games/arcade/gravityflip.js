@@ -199,6 +199,18 @@ const GravityFlip = {
         const w = this.ui.canvasW;
         const spikeH = 25 + Math.random() * 30;
         const spikeW = 18 + Math.random() * 16;
+
+        // Check last obstacle — ensure enough gap for dual obstacles
+        const lastOb = this.obstacles.length > 0 ? this.obstacles[this.obstacles.length - 1] : null;
+        const lastIsDual = lastOb && lastOb._dual;
+        const minGapAfterDual = 200; // pixels of clear space after a dual obstacle
+
+        // Don't spawn dual if last was dual and too close
+        let canSpawnDual = true;
+        if (lastIsDual && lastOb.x > w - minGapAfterDual) {
+            canSpawnDual = false;
+        }
+
         const rand = Math.random();
 
         if (rand < 0.35) {
@@ -206,24 +218,26 @@ const GravityFlip = {
             this.obstacles.push({
                 x: w, y: this.floorY - spikeH, w: spikeW, h: spikeH, type: 'floor'
             });
-        } else if (rand < 0.7) {
+        } else if (rand < 0.7 || !canSpawnDual) {
             // Ceiling spike
             this.obstacles.push({
                 x: w, y: this.ceilY, w: spikeW, h: spikeH, type: 'ceil'
             });
         } else {
             // Both floor and ceiling — forces a timed flip
-            const gap = 140 + Math.random() * 80;
+            const gap = 160 + Math.random() * 80;
             const midY = (this.floorY + this.ceilY) / 2;
             const topH = midY - gap / 2 - this.ceilY;
             const botH = this.floorY - (midY + gap / 2);
             if (topH > 10 && botH > 10) {
                 this.obstacles.push({
-                    x: w, y: this.ceilY, w: spikeW + 6, h: topH, type: 'ceil'
+                    x: w, y: this.ceilY, w: spikeW + 6, h: topH, type: 'ceil', _dual: true
                 });
                 this.obstacles.push({
-                    x: w, y: this.floorY - botH, w: spikeW + 6, h: botH, type: 'floor'
+                    x: w, y: this.floorY - botH, w: spikeW + 6, h: botH, type: 'floor', _dual: true
                 });
+                // Add extra spacing — increase spawn timer to guarantee clearance
+                this.spawnTimer = -Math.floor(minGapAfterDual / this.gameSpeed);
             }
         }
     },

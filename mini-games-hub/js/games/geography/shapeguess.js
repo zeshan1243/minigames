@@ -577,10 +577,10 @@ const ShapeGuess = {
         ctx.fillText(`Score: ${this.score}`, W / 2, 28);
 
         // Country shape area
-        const shapeAreaX = (W - 320) / 2;
-        const shapeAreaY = 60;
-        const shapeAreaW = 320;
-        const shapeAreaH = 300;
+        const shapeAreaX = (W - 280) / 2;
+        const shapeAreaY = 50;
+        const shapeAreaW = 280;
+        const shapeAreaH = 240;
 
         // Subtle border around shape area
         ctx.strokeStyle = "rgba(0, 212, 255, 0.15)";
@@ -594,10 +594,10 @@ const ShapeGuess = {
 
         // Answer buttons
         const btnW = 340;
-        const btnH = 48;
+        const btnH = 42;
         const btnX = (W - btnW) / 2;
-        const btnStartY = 390;
-        const btnGap = 12;
+        const btnStartY = 320;
+        const btnGap = 8;
         this.buttonRects = [];
 
         for (let i = 0; i < 4; i++) {

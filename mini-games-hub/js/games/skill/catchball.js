@@ -51,13 +51,12 @@ const CatchBall = {
             if (b.y + b.r >= py && b.y - b.r <= py + this.paddle.h &&
                 b.x >= this.paddle.x && b.x <= this.paddle.x + this.paddle.w) {
                 this.balls.splice(i, 1);
-                if (b.bomb) { this.lives--; if (this.lives <= 0) { this.endGame(); return; } }
+                if (b.bomb) { this.endGame(); return; }
                 else { this.score++; this.ui.setScore(this.score); }
                 continue;
             }
             if (b.y > this.ui.canvasH + 20) {
                 this.balls.splice(i, 1);
-                if (!b.bomb) { this.lives--; if (this.lives <= 0) { this.endGame(); return; } }
             }
         }
         this.speed = 2 + this.score * 0.03;

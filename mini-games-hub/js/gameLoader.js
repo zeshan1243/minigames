@@ -12,7 +12,6 @@ const GAME_META = {
     doodlejump:    { title: 'Doodle Jump',         hint: 'Arrows/WASD to move \u2022 Tap sides on mobile \u2022 P to pause', module: './games/arcade/doodlejump.js' },
     runner:        { title: 'Endless Runner',      hint: 'SPACE or tap to jump \u2022 P to pause', module: './games/arcade/runner.js' },
     helicopter:    { title: 'Helicopter',           hint: 'Hold SPACE/click/tap to fly up \u2022 Release to descend', module: './games/arcade/helicopter.js' },
-    pinball:       { title: 'Pinball',               hint: 'Left/Right arrows for flippers \u2022 SPACE to launch', module: './games/arcade/pinball.js' },
     platformer:    { title: 'Platformer',            hint: 'Arrows/WASD to move \u2022 SPACE to jump \u2022 Collect coins!', module: './games/arcade/platformer.js' },
     onebutton:     { title: 'One-Button Survival',  hint: 'SPACE or tap to fly \u2022 Dodge obstacles \u2022 P to pause', module: './games/arcade/onebutton.js' },
     gravityflip:   { title: 'Gravity Flip',          hint: 'SPACE or tap to flip gravity \u2022 P to pause', module: './games/arcade/gravityflip.js' },
@@ -173,6 +172,11 @@ const GAME_LEVELS = {
         { key: 'easy', name: 'Easy', desc: '8\u00d78, 4 colors, 25 moves', css: 'level-btn-easy' },
         { key: 'medium', name: 'Medium', desc: '10\u00d710, 6 colors, 25 moves', css: 'level-btn-medium' },
         { key: 'hard', name: 'Hard', desc: '14\u00d714, 7 colors, 22 moves', css: 'level-btn-hard' }
+    ],
+    helicopter: [
+        { key: 'easy', name: 'Easy', desc: 'Wide cave, slow speed', css: 'level-btn-easy' },
+        { key: 'medium', name: 'Medium', desc: 'Normal cave & speed', css: 'level-btn-medium' },
+        { key: 'hard', name: 'Hard', desc: 'Narrow cave, fast speed', css: 'level-btn-hard' }
     ]
 };
 
@@ -451,7 +455,6 @@ const SUGGESTED_DATA = [
     { id: 'fruitslicer', title: 'Fruit Slicer', icon: '\uD83C\uDF49', gradient: 'linear-gradient(135deg, #ff2d7b, #00e676)' },
     { id: 'platformer', title: 'Platformer', icon: '\uD83C\uDFAE', gradient: 'linear-gradient(135deg, #00d4ff, #ffd60a)' },
     { id: 'dodger', title: 'Dodger', icon: '\uD83D\uDCA8', gradient: 'linear-gradient(135deg, #ff2d7b, #888)' },
-    { id: 'pinball', title: 'Pinball', icon: '\uD83E\uDE99', gradient: 'linear-gradient(135deg, #ffd60a, #ff2d7b)' },
     { id: 'tanks', title: 'Tanks', icon: '\uD83D\uDE82', gradient: 'linear-gradient(135deg, #00e676, #888)' },
     { id: 'golfputt', title: 'Golf Putt', icon: '\u26F3', gradient: 'linear-gradient(135deg, #00e676, #264653)' },
     { id: 'sudoku', title: 'Sudoku', icon: '\uD83E\uDDEE', gradient: 'linear-gradient(135deg, #7c4dff, #00e676)' },

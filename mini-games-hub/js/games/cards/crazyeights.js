@@ -40,6 +40,8 @@ const CrazyEights = {
     // Hover / selection
     hoveredCardIndex: -1,
     selectedCardIndex: -1,
+    cardHoverY: [],
+    cardScale: [],
 
     // Animations
     animations: [],
@@ -129,6 +131,8 @@ const CrazyEights = {
         this.requiredSuit = null;
         this.hoveredCardIndex = -1;
         this.selectedCardIndex = -1;
+        this.cardHoverY = [];
+        this.cardScale = [];
         this.drawCount = 0;
         this.aiThinking = false;
         if (this.aiThinkTimer) clearTimeout(this.aiThinkTimer);
@@ -690,6 +694,22 @@ const CrazyEights = {
         }
         this.animations = this.animations.filter(a => !a.done);
 
+        // Smooth card hover animations
+        const handLen = this.playerHand ? this.playerHand.length : 0;
+        while (this.cardHoverY.length < handLen) { this.cardHoverY.push(0); this.cardScale.push(1); }
+        this.cardHoverY.length = handLen;
+        this.cardScale.length = handLen;
+        for (let i = 0; i < handLen; i++) {
+            const hovered = i === this.hoveredCardIndex;
+            const playable = this.isPlayerTurn && this.canPlay(this.playerHand[i]);
+            const targetY = hovered ? -16 : 0;
+            const targetScale = (hovered && playable) ? 1.08 : 1;
+            this.cardHoverY[i] += (targetY - this.cardHoverY[i]) * Math.min(1, dt * 14);
+            this.cardScale[i] += (targetScale - this.cardScale[i]) * Math.min(1, dt * 12);
+            if (Math.abs(this.cardHoverY[i] - targetY) < 0.3) this.cardHoverY[i] = targetY;
+            if (Math.abs(this.cardScale[i] - targetScale) < 0.005) this.cardScale[i] = targetScale;
+        }
+
         // Particles
         for (const p of this.particles) {
             p.x += p.vx;
@@ -798,24 +818,42 @@ const CrazyEights = {
         this.playerCardPositions = positions;
         for (let i = 0; i < this.playerHand.length; i++) {
             const p = positions[i];
-            const hovered = i === this.hoveredCardIndex;
-            const yOff = hovered ? -12 : 0;
             const playable = this.isPlayerTurn && this.canPlay(this.playerHand[i]);
+            const yOff = this.cardHoverY[i] || 0;
+            const scale = this.cardScale[i] || 1;
+            const hovered = i === this.hoveredCardIndex;
 
             // Dim unplayable cards
             if (this.isPlayerTurn && !playable && !this.choosingSuit) {
-                ctx.globalAlpha = 0.5;
+                ctx.globalAlpha = 0.4;
+            }
+
+            ctx.save();
+            if (scale !== 1) {
+                const cx = p.x + this.CARD_W / 2;
+                const cy = p.y + yOff + this.CARD_H / 2;
+                ctx.translate(cx, cy);
+                ctx.scale(scale, scale);
+                ctx.translate(-cx, -cy);
+            }
+
+            // Glow shadow for hovered playable card
+            if (hovered && playable) {
+                ctx.shadowColor = '#00d4ff';
+                ctx.shadowBlur = 18;
             }
 
             this.drawCardFace(ctx, p.x, p.y + yOff, this.playerHand[i]);
 
-            if (playable && hovered) {
+            if (hovered && playable) {
+                ctx.shadowColor = 'transparent';
                 ctx.strokeStyle = '#00d4ff';
                 ctx.lineWidth = 2;
                 this.roundRect(ctx, p.x - 1, p.y + yOff - 1, this.CARD_W + 2, this.CARD_H + 2, this.CARD_R + 1);
                 ctx.stroke();
             }
 
+            ctx.restore();
             ctx.globalAlpha = 1;
         }
     },

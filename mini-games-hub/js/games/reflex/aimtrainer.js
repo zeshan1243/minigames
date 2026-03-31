@@ -19,7 +19,7 @@ const AimTrainer = {
         this.spawnTarget();
         this.spawnTimer = setInterval(() => {
             if (!this.gameOver) this.spawnTarget();
-        }, 1200);
+        }, 1800);
         this.loop();
     },
 
@@ -28,7 +28,7 @@ const AimTrainer = {
         this.targets.push({
             x: r + Math.random() * (this.ui.canvasW - r * 2),
             y: 60 + r + Math.random() * (this.ui.canvasH - 120 - r * 2),
-            r, life: 120, shrink: 1
+            r, life: 200, shrink: 1
         });
     },
 
@@ -43,7 +43,7 @@ const AimTrainer = {
         for (let i = this.targets.length - 1; i >= 0; i--) {
             const t = this.targets[i];
             t.life--;
-            t.shrink = t.life / 120;
+            t.shrink = t.life / 200;
             if (t.life <= 0) {
                 this.targets.splice(i, 1);
                 this.misses++;
