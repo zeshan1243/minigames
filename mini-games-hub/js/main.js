@@ -154,7 +154,7 @@ function renderCards() {
             : `<a href="game?id=${game.id}" class="btn btn-play">Play</a>`;
 
         const thumb = game.thumb
-            ? `<img class="card-thumb-img" src="assets/thumbnails/${game.thumb}" alt="${game.title}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            ? `<img class="card-thumb-img" src="assets/thumbnails/${game.thumb}" alt="${game.title}" width="280" height="140" loading="lazy" decoding="async" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
                <span class="card-thumb-fallback" style="display:none;background:${game.gradient}">${game.icon}</span>`
             : `<span>${game.icon}</span>`;
 

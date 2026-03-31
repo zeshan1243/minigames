@@ -30,17 +30,24 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"></noscript>
     <link rel="stylesheet" href="css/style.css">
-    <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3366385543056829" crossorigin="anonymous"></script>
+    <style>
+        body{font-family:'Outfit',system-ui,sans-serif;background:#0a0a0f;color:#e8e8f0;margin:0;min-height:100vh}
+        .header{position:sticky;top:0;z-index:100;background:rgba(10,10,15,0.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.06)}
+        .header-inner{max-width:1200px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between}
+    </style>
+
 </head>
 <body>
     <header class="header">
         <div class="header-inner">
-            <a href="/" class="logo"><img src="assets/logo.svg" alt="Zehum Mini Games" class="logo-img"></a>
+            <a href="/" class="logo"><img src="assets/logo.svg" alt="Zehum Mini Games" class="logo-img" width="190" height="38"></a>
             <a href="/" class="back-btn">&larr; Back to Games</a>
         </div>
     </header>
@@ -202,8 +209,9 @@
         </div>
     </div>
 
-    <script src="js/cookies.js"></script>
-    <script src="js/shield.js"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3366385543056829" crossorigin="anonymous"></script>
+    <script src="js/cookies.js" defer></script>
+    <script src="js/shield.js" defer></script>
     <script type="module" src="js/gameLoader.js"></script>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
