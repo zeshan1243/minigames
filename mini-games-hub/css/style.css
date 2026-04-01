@@ -127,6 +127,29 @@ body::before {
     display: block;
 }
 
+.header-nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    white-space: nowrap;
+}
+
+.nav-link:hover {
+    color: var(--accent-cyan);
+}
+
+.nav-link.active {
+    color: var(--accent-cyan);
+}
+
 .back-btn {
     color: var(--text-secondary);
     text-decoration: none;

@@ -1,5 +1,9 @@
 import Storage from './storage.js';
 
+// Detect local file:// or static server without URL rewriting
+const isLocal = location.protocol === 'file:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+const gameURL = (id, extra) => `game${isLocal ? '.html' : ''}?id=${id}${extra || ''}`;
+
 const CATEGORIES = [
     { key: 'all', label: 'All Games' },
     { key: 'arcade', label: 'Arcade' },
@@ -10,6 +14,7 @@ const CATEGORIES = [
     { key: 'cards', label: 'Card Games' },
     { key: 'geography', label: 'Geography' },
     { key: 'casual', label: 'Casual' },
+    { key: 'levels', label: 'Level Games' },
     { key: 'multiplayer', label: '2 Player' }
 ];
 
@@ -29,7 +34,6 @@ const GAMES = [
     { id: 'onebutton', title: 'One-Button Survival', description: 'One button. Infinite obstacles. How far can you go?', icon: '\uD83D\uDD25', gradient: 'linear-gradient(135deg, #00d4ff, #ff2d7b)', scoreUnit: '', category: 'arcade' },
     { id: 'gravityflip', title: 'Gravity Flip', description: 'Flip gravity to dodge obstacles on floor and ceiling!', icon: '\uD83D\uDE80', gradient: 'linear-gradient(135deg, #b44dff, #00d4ff)', scoreUnit: '', category: 'arcade' },
     { id: 'crowdescape', title: 'Crowd Escape', description: 'Escape the growing crowd of chasers!', icon: '\uD83C\uDFC3', gradient: 'linear-gradient(135deg, #ff2d7b, #ff6d00)', scoreUnit: 's', category: 'arcade' },
-
     // Puzzle & Logic
     { id: 'puzzle', title: 'Daily Puzzle', description: 'A new number puzzle every day. Can you crack it?', icon: '\uD83E\uDDE9', gradient: 'linear-gradient(135deg, #7c4dff, #00b0ff)', scoreUnit: '', category: 'puzzle', thumb: 'puzzle.png' },
     { id: 'game2048', title: '2048', description: 'Slide tiles and merge to reach 2048.', icon: '\uD83D\uDD22', gradient: 'linear-gradient(135deg, #f4a261, #e76f51)', scoreUnit: '', category: 'puzzle', thumb: 'game2048.png' },
@@ -100,10 +104,15 @@ const GAMES = [
     { id: 'numbersort', title: 'Number Sort', description: 'Swap numbers into ascending order.', icon: '\uD83D\uDD22', gradient: 'linear-gradient(135deg, #00d4ff, #ffd60a)', scoreUnit: '', category: 'casual', thumb: 'numbersort.png' },
     { id: 'bubblepop', title: 'Bubble Pop', description: 'Pop rising bubbles before they escape!', icon: '\uD83E\uDEE7', gradient: 'linear-gradient(135deg, #00d4ff, #b44dff)', scoreUnit: '', category: 'casual', thumb: 'bubblepop.png' },
     { id: 'matching', title: 'Pattern Match', description: 'Recreate the color pattern from memory.', icon: '\uD83D\uDDBC\uFE0F', gradient: 'linear-gradient(135deg, #b44dff, #ffd60a)', scoreUnit: '', category: 'casual', thumb: 'matching.png' },
-    { id: 'idleclicker', title: 'Fake Rich', description: 'Click to earn, buy upgrades, prestige and repeat!', icon: '\uD83E\uDE99', gradient: 'linear-gradient(135deg, #ffd60a, #ff6d00)', scoreUnit: '', category: 'casual' }
+    { id: 'idleclicker', title: 'Fake Rich', description: 'Click to earn, buy upgrades, prestige and repeat!', icon: '\uD83E\uDE99', gradient: 'linear-gradient(135deg, #ffd60a, #ff6d00)', scoreUnit: '', category: 'casual' },
+
+    // Level Games
+    { id: 'trollescape', title: 'Troll Escape', description: 'A "normal" platformer... or is it? 30 levels of deception!', icon: '\uD83D\uDE08', gradient: 'linear-gradient(135deg, #ffd60a, #ff2d7b)', scoreUnit: ' deaths', category: 'levels', hasLevels: 30 }
 ];
 
-let activeCategory = 'all';
+// Read ?cat= param to pre-select category
+const urlCat = new URLSearchParams(window.location.search).get('cat');
+let activeCategory = (urlCat && CATEGORIES.some(c => c.key === urlCat)) ? urlCat : 'all';
 
 function renderCategoryNav() {
     const nav = document.getElementById('categoryNav');
@@ -144,14 +153,16 @@ function renderCards() {
 
         const mpBadge = game.multiplayer
             ? '<span class="mp-badge">1P / 2P</span>'
+            : game.hasLevels
+            ? `<span class="mp-badge" style="background:var(--accent-yellow);color:#000;">${game.hasLevels} LEVELS</span>`
             : '';
 
         const modeButtons = game.multiplayer
             ? `<div class="mode-buttons">
-                   <a href="game?id=${game.id}&mode=1p" class="btn btn-play">1 Player</a>
-                   <a href="game?id=${game.id}&mode=2p" class="btn btn-play btn-2p">2 Players</a>
+                   <a href="${gameURL(game.id, '&mode=1p')}" class="btn btn-play">1 Player</a>
+                   <a href="${gameURL(game.id, '&mode=2p')}" class="btn btn-play btn-2p">2 Players</a>
                </div>`
-            : `<a href="game?id=${game.id}" class="btn btn-play">Play</a>`;
+            : `<a href="${gameURL(game.id)}" class="btn btn-play">Play</a>`;
 
         const thumb = game.thumb
             ? `<img class="card-thumb-img" src="assets/thumbnails/${game.thumb}" alt="${game.title}" width="280" height="140" loading="lazy" decoding="async" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
@@ -178,3 +189,11 @@ function renderCards() {
 
 renderCategoryNav();
 renderCards();
+
+// Highlight nav link if levels category is active
+if (activeCategory === 'levels') {
+    const navLink = document.getElementById('levelGamesNav');
+    if (navLink) navLink.classList.add('active');
+    const homeLink = document.querySelector('.header-nav .nav-link:first-child');
+    if (homeLink) homeLink.classList.remove('active');
+}

@@ -1,5 +1,8 @@
 import Storage from './storage.js';
 
+const isLocal = location.protocol === 'file:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+const gameURL = (id) => `game${isLocal ? '.html' : ''}?id=${id}`;
+
 const GAME_META = {
     // Arcade
     snake:         { title: 'Snake',               hint: 'Arrow keys to move \u2022 Swipe on mobile \u2022 P to pause', module: './games/arcade/snake.js' },
@@ -16,6 +19,7 @@ const GAME_META = {
     onebutton:     { title: 'One-Button Survival',  hint: 'SPACE or tap to fly \u2022 Dodge obstacles \u2022 P to pause', module: './games/arcade/onebutton.js' },
     gravityflip:   { title: 'Gravity Flip',          hint: 'SPACE or tap to flip gravity \u2022 P to pause', module: './games/arcade/gravityflip.js' },
     crowdescape:   { title: 'Crowd Escape',          hint: 'Arrows/WASD to move \u2022 Drag on mobile \u2022 P to pause', module: './games/arcade/crowdescape.js' },
+    trollescape:   { title: 'Troll Escape',          hint: 'Arrows/WASD to move \u2022 SPACE to jump \u2022 R to retry \u2022 ESC for levels \uD83D\uDE08', module: './games/arcade/trollescape.js' },
 
     // Puzzle & Logic
     puzzle:        { title: 'Daily Puzzle',        hint: 'Guess the daily number in 6 tries', module: './games/puzzle/puzzle.js' },
@@ -325,9 +329,9 @@ async function init() {
                                 Challenge friends, beat high scores, and have fun.
                             </p>
                             <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-                                <a href="/game?id=tetris" style="background:#00d4ff;color:#000;padding:8px 16px;border-radius:8px;text-decoration:none;font-family:Outfit,sans-serif;font-weight:600;font-size:0.85rem;">Play Tetris</a>
-                                <a href="/game?id=snake" style="background:#00e676;color:#000;padding:8px 16px;border-radius:8px;text-decoration:none;font-family:Outfit,sans-serif;font-weight:600;font-size:0.85rem;">Play Snake</a>
-                                <a href="/game?id=flappy" style="background:#ffd60a;color:#000;padding:8px 16px;border-radius:8px;text-decoration:none;font-family:Outfit,sans-serif;font-weight:600;font-size:0.85rem;">Play Flappy</a>
+                                <a href="${gameURL('tetris')}" style="background:#00d4ff;color:#000;padding:8px 16px;border-radius:8px;text-decoration:none;font-family:Outfit,sans-serif;font-weight:600;font-size:0.85rem;">Play Tetris</a>
+                                <a href="${gameURL('snake')}" style="background:#00e676;color:#000;padding:8px 16px;border-radius:8px;text-decoration:none;font-family:Outfit,sans-serif;font-weight:600;font-size:0.85rem;">Play Snake</a>
+                                <a href="${gameURL('flappy')}" style="background:#ffd60a;color:#000;padding:8px 16px;border-radius:8px;text-decoration:none;font-family:Outfit,sans-serif;font-weight:600;font-size:0.85rem;">Play Flappy</a>
                             </div>
                             <p style="color:#555;font-size:0.7rem;margin-top:16px;font-family:Outfit,sans-serif;">zehum.com — No downloads. Just play.</p>
                         </div>
@@ -467,7 +471,8 @@ const SUGGESTED_DATA = [
     { id: 'blackjack', title: 'Blackjack', icon: '\uD83C\uDCCF', gradient: 'linear-gradient(135deg, #1a5c3a, #00e676)' },
     { id: 'solitaire', title: 'Solitaire', icon: '\uD83C\uDCC1', gradient: 'linear-gradient(135deg, #00e676, #1a5c3a)' },
     { id: 'crazyeights', title: 'Crazy Eights', icon: '\uD83C\uDCB8', gradient: 'linear-gradient(135deg, #ffd60a, #ff6d00)' },
-    { id: 'war', title: 'War', icon: '\u2694\uFE0F', gradient: 'linear-gradient(135deg, #ff2d7b, #ffd60a)' }
+    { id: 'war', title: 'War', icon: '\u2694\uFE0F', gradient: 'linear-gradient(135deg, #ff2d7b, #ffd60a)' },
+    { id: 'trollescape', title: 'Troll Escape', icon: '\uD83D\uDE08', gradient: 'linear-gradient(135deg, #ffd60a, #ff2d7b)' }
 ];
 
 function renderSuggested(currentId) {
@@ -480,7 +485,7 @@ function renderSuggested(currentId) {
     const picks = shuffled.slice(0, 6);
 
     grid.innerHTML = picks.map(game => `
-        <a href="game?id=${game.id}" class="suggested-card">
+        <a href="${gameURL(game.id)}" class="suggested-card">
             <div class="suggested-icon" style="background: ${game.gradient}">
                 <span>${game.icon}</span>
             </div>
