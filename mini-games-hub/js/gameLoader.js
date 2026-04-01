@@ -20,7 +20,7 @@ const GAME_META = {
     gravityflip:   { title: 'Gravity Flip',          hint: 'SPACE or tap to flip gravity \u2022 P to pause', module: './games/arcade/gravityflip.js' },
     crowdescape:   { title: 'Crowd Escape',          hint: 'Arrows/WASD to move \u2022 Drag on mobile \u2022 P to pause', module: './games/arcade/crowdescape.js' },
     trollescape:   { title: 'Troll Escape',          hint: 'Arrows/WASD to move \u2022 SPACE to jump \u2022 R to retry \u2022 ESC for levels \uD83D\uDE08', module: './games/arcade/trollescape.js' },
-
+    quantumbounce: { title: 'Quantum Bounce',       hint: 'Arrows/WASD to move \u2022 SPACE to jump \u2022 G to flip gravity \u2022 R to retry \u2022 ESC for levels', module: './games/arcade/quantumbounce.js' },
     // Puzzle & Logic
     puzzle:        { title: 'Daily Puzzle',        hint: 'Guess the daily number in 6 tries', module: './games/puzzle/puzzle.js' },
     game2048:      { title: '2048',                hint: 'Arrow keys or swipe to slide tiles', module: './games/puzzle/game2048.js' },
@@ -300,8 +300,8 @@ async function init() {
             const ins = document.createElement('ins');
             ins.className = 'adsbygoogle';
             ins.style.display = 'inline-block';
-            ins.style.width = '300px';
-            ins.style.height = '250px';
+            ins.style.width = '570px';
+            ins.style.height = '310px';
             ins.setAttribute('data-ad-client', 'ca-pub-3366385543056829');
             ins.setAttribute('data-ad-slot', '1810232737');
             adContainer.appendChild(ins);
@@ -472,7 +472,8 @@ const SUGGESTED_DATA = [
     { id: 'solitaire', title: 'Solitaire', icon: '\uD83C\uDCC1', gradient: 'linear-gradient(135deg, #00e676, #1a5c3a)' },
     { id: 'crazyeights', title: 'Crazy Eights', icon: '\uD83C\uDCB8', gradient: 'linear-gradient(135deg, #ffd60a, #ff6d00)' },
     { id: 'war', title: 'War', icon: '\u2694\uFE0F', gradient: 'linear-gradient(135deg, #ff2d7b, #ffd60a)' },
-    { id: 'trollescape', title: 'Troll Escape', icon: '\uD83D\uDE08', gradient: 'linear-gradient(135deg, #ffd60a, #ff2d7b)' }
+    { id: 'trollescape', title: 'Troll Escape', icon: '\uD83D\uDE08', gradient: 'linear-gradient(135deg, #ffd60a, #ff2d7b)' },
+    { id: 'quantumbounce', title: 'Quantum Bounce', icon: '\u26BD', gradient: 'linear-gradient(135deg, #00d4ff, #b44dff)' }
 ];
 
 function renderSuggested(currentId) {

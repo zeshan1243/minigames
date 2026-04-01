@@ -107,7 +107,8 @@ const GAMES = [
     { id: 'idleclicker', title: 'Fake Rich', description: 'Click to earn, buy upgrades, prestige and repeat!', icon: '\uD83E\uDE99', gradient: 'linear-gradient(135deg, #ffd60a, #ff6d00)', scoreUnit: '', category: 'casual' },
 
     // Level Games
-    { id: 'trollescape', title: 'Troll Escape', description: 'A "normal" platformer... or is it? 30 levels of deception!', icon: '\uD83D\uDE08', gradient: 'linear-gradient(135deg, #ffd60a, #ff2d7b)', scoreUnit: ' deaths', category: 'levels', hasLevels: 30 }
+    { id: 'trollescape', title: 'Troll Escape', description: 'Fake paths, lying instructions, invisible floors, shrinking worlds — 30 levels of pure chaos!', icon: '\uD83D\uDE08', gradient: 'linear-gradient(135deg, #ffd60a, #ff2d7b)', scoreUnit: ' deaths', category: 'levels', hasLevels: 30 },
+    { id: 'quantumbounce', title: 'Quantum Bounce', description: 'Physics ball platformer with portals, springs, speed zones & gravity flip!', icon: '\u26BD', gradient: 'linear-gradient(135deg, #00d4ff, #b44dff)', scoreUnit: ' deaths', category: 'levels', hasLevels: 10 }
 ];
 
 // Read ?cat= param to pre-select category
