@@ -46,6 +46,7 @@ const GAMES = [
     { id: 'wordsearch', title: 'Word Search', description: 'Find all hidden words in the grid.', icon: '\uD83D\uDD0D', gradient: 'linear-gradient(135deg, #00e676, #00d4ff)', scoreUnit: '', category: 'puzzle', thumb: 'wordsearch.png' },
     { id: 'maze', title: 'Maze Runner', description: 'Navigate through the procedural maze.', icon: '\uD83C\uDF10', gradient: 'linear-gradient(135deg, #00d4ff, #b44dff)', scoreUnit: '', category: 'puzzle', thumb: 'maze.png' },
     { id: 'shapemerge', title: 'Shape Merge', description: 'Merge shapes in this 2048-style puzzle!', icon: '\uD83D\uDD37', gradient: 'linear-gradient(135deg, #00d4ff, #ffd60a)', scoreUnit: '', category: 'puzzle' },
+    { id: 'brainteasers', title: 'Brain Teasers', description: 'Decode visual word puzzles! 100 dingbats to solve.', icon: '\uD83E\uDDE0', gradient: 'linear-gradient(135deg, #ffd60a, #00d4ff)', scoreUnit: '', category: 'puzzle' },
 
     // Reflex & Speed
     { id: 'reaction', title: 'Reaction Test', description: 'Test your reflexes — 1P or 2P showdown!', icon: '\u26A1', gradient: 'linear-gradient(135deg, #00e676, #00b0ff)', scoreUnit: 'ms', category: 'reflex', multiplayer: true, thumb: 'reaction.png' },
@@ -95,6 +96,7 @@ const GAMES = [
     { id: 'geosprint', title: 'Geography Sprint', description: 'Rapid-fire geography questions — how far can you go?', icon: '\uD83D\uDE80', gradient: 'linear-gradient(135deg, #ff2d7b, #ffd60a)', scoreUnit: '', category: 'geography' },
     { id: 'neighbors', title: 'Neighbor Finder', description: 'Select all countries that border this one!', icon: '\uD83E\uDDED', gradient: 'linear-gradient(135deg, #00e676, #ffd60a)', scoreUnit: '', category: 'geography' },
     { id: 'worldexplorer', title: 'World Explorer', description: 'Click to discover regions and hidden landmarks!', icon: '\uD83C\uDF0D', gradient: 'linear-gradient(135deg, #00d4ff, #00e676)', scoreUnit: '', category: 'geography' },
+    { id: 'emojicountry', title: 'Emoji Country', description: 'Guess the country from emojis! 196 countries covered.', icon: '\uD83C\uDF0D', gradient: 'linear-gradient(135deg, #ffd60a, #00e676)', scoreUnit: '', category: 'geography' },
 
     // Casual
     { id: 'simon', title: 'Simon Says', description: 'Remember and repeat the color sequence.', icon: '\uD83D\uDFE2', gradient: 'linear-gradient(135deg, #00e676, #ffd60a)', scoreUnit: '', category: 'casual', thumb: 'simon.png' },

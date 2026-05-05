@@ -33,6 +33,7 @@ const GAME_META = {
     wordsearch:    { title: 'Word Search',          hint: 'Click and drag to select words', module: './games/puzzle/wordsearch.js' },
     maze:          { title: 'Maze Runner',          hint: 'Arrow keys or swipe to navigate the maze', module: './games/puzzle/maze.js' },
     shapemerge:    { title: 'Shape Merge',          hint: 'Arrow keys or swipe to slide shapes \u2022 Same shapes merge!', module: './games/puzzle/shapemerge.js' },
+    brainteasers:  { title: 'Brain Teasers',       hint: 'Press 1-4 or click to answer \u2022 Decode visual word puzzles!', module: './games/puzzle/brainteasers.js' },
 
     // Reflex & Speed
     reaction:      { title: 'Reaction Test',      hint: 'Click or tap when the screen turns green', module: './games/reflex/reaction.js' },
@@ -82,6 +83,7 @@ const GAME_META = {
     geosprint:     { title: 'Geography Sprint',      hint: 'Click answer or press 1-4 \u2022 P to pause', module: './games/geography/geosprint.js' },
     neighbors:     { title: 'Neighbor Finder',       hint: 'Click all neighboring countries \u2022 P to pause', module: './games/geography/neighbors.js' },
     worldexplorer: { title: 'World Explorer',        hint: 'Click on the map to discover regions and landmarks', module: './games/geography/worldexplorer.js' },
+    emojicountry:  { title: 'Emoji Country',         hint: 'Press 1-4 or click to guess \u2022 10s per question \u2022 3 lives', module: './games/geography/emojicountry.js' },
 
     // Casual
     simon:         { title: 'Simon Says',          hint: 'Watch the pattern, then tap it back', module: './games/casual/simon.js' },
@@ -242,6 +244,71 @@ async function init() {
     canvas.style.height = ch + 'px';
     const ctx = canvas.getContext('2d');
     ctx.scale(dpr, dpr);
+
+    // ─── Play views counter ───
+    const viewsKey = 'zehum_views';
+    try {
+        const allViews = JSON.parse(localStorage.getItem(viewsKey) || '{}');
+        allViews[id] = (allViews[id] || 0) + 1;
+        localStorage.setItem(viewsKey, JSON.stringify(allViews));
+        const viewsEl = document.getElementById('gameViews');
+        if (viewsEl) {
+            const count = allViews[id];
+            viewsEl.textContent = '\u25B6 ' + (count >= 1000 ? (count / 1000).toFixed(1) + 'K' : count) + ' plays';
+        }
+    } catch (e) {}
+
+    // ─── Fullscreen toggle ───
+    const fsBtn = document.getElementById('fullscreenBtn');
+    const wrapper = document.getElementById('canvasWrapper');
+    if (fsBtn && wrapper) {
+        function resizeCanvas(fullscreen) {
+            const newW = fullscreen ? window.innerWidth : cw;
+            const newH = fullscreen ? window.innerHeight : ch;
+            const d = window.devicePixelRatio || 1;
+            canvas.width = newW * d;
+            canvas.height = newH * d;
+            canvas.style.width = newW + 'px';
+            canvas.style.height = newH + 'px';
+            const c = canvas.getContext('2d');
+            c.scale(d, d);
+            // Update game's canvas dimensions if it supports it
+            if (currentGame && currentGame.ui) {
+                currentGame.ui.canvasW = newW;
+                currentGame.ui.canvasH = newH;
+            }
+            if (currentGame && currentGame.W !== undefined) {
+                currentGame.W = newW;
+                currentGame.H = newH;
+            }
+        }
+
+        fsBtn.addEventListener('click', () => {
+            if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+                if (wrapper.requestFullscreen) wrapper.requestFullscreen();
+                else if (wrapper.webkitRequestFullscreen) wrapper.webkitRequestFullscreen();
+            } else {
+                if (document.exitFullscreen) document.exitFullscreen();
+                else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+            }
+        });
+
+        function onFSChange() {
+            const isFS = !!(document.fullscreenElement || document.webkitFullscreenElement);
+            resizeCanvas(isFS);
+            // Reload the current level so the game rebuilds its world for the new size
+            if (currentGame) {
+                if (currentGame.loadLevel && currentGame.level) {
+                    currentGame.loadLevel(currentGame.level);
+                } else if (currentGame.reset && currentGame.start) {
+                    currentGame.reset();
+                    currentGame.start();
+                }
+            }
+        }
+        document.addEventListener('fullscreenchange', onFSChange);
+        document.addEventListener('webkitfullscreenchange', onFSChange);
+    }
 
     const best = Storage.getHighScore(id);
     document.getElementById('highScore').textContent = best || '\u2014';
@@ -473,7 +540,8 @@ const SUGGESTED_DATA = [
     { id: 'crazyeights', title: 'Crazy Eights', icon: '\uD83C\uDCB8', gradient: 'linear-gradient(135deg, #ffd60a, #ff6d00)' },
     { id: 'war', title: 'War', icon: '\u2694\uFE0F', gradient: 'linear-gradient(135deg, #ff2d7b, #ffd60a)' },
     { id: 'trollescape', title: 'Troll Escape', icon: '\uD83D\uDE08', gradient: 'linear-gradient(135deg, #ffd60a, #ff2d7b)' },
-    { id: 'quantumbounce', title: 'Quantum Bounce', icon: '\u26BD', gradient: 'linear-gradient(135deg, #00d4ff, #b44dff)' }
+    { id: 'quantumbounce', title: 'Quantum Bounce', icon: '\u26BD', gradient: 'linear-gradient(135deg, #00d4ff, #b44dff)' },
+    { id: 'emojicountry', title: 'Emoji Country', icon: '\uD83C\uDF0D', gradient: 'linear-gradient(135deg, #ffd60a, #00e676)' }
 ];
 
 function renderSuggested(currentId) {
